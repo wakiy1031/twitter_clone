@@ -1,0 +1,7 @@
+- if user_signed_in?
+  .user-info
+    h2 = "こんにちは、#{@user.user_name}さん"
+  
+  .tweet-button
+    = link_to 'つぶやく', posts_path, data: { turbo: false }, class: "btn btn-primary"
+

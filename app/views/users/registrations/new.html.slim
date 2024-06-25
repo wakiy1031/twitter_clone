@@ -1,0 +1,41 @@
+.centerViewWrap
+  .centerViewArea
+    .inner
+      h2
+        | アカウントを作成
+      = form_for(resource, as: resource_name, url: registration_path(resource_name), class: "needs-validation", html: { novalidate: true }, data: { turbo: false }) do |f|
+        .field
+          = f.text_field :user_name, autocomplete: "name", class: 'form-control'
+          = f.label :user_name
+          - if @user.errors.include?(:user_name)
+            small.text-danger
+              = @user.errors.full_messages_for(:user_name).first
+        .field
+          = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control'
+          = f.label :email
+          - if @user.errors.include?(:email)
+            small.text-danger
+              = @user.errors.full_messages_for(:email).first
+        .field
+          = f.text_field :phone, class: 'form-control'
+          = f.label :phone
+          - if @user.errors.include?(:phone)
+            small.text-danger
+              = @user.errors.full_messages_for(:phone).first
+        .field.birthdate_field
+          = f.label :birthdate
+          = f.date_select :birthdate, class: 'form-control', prompt:"", use_month_numbers:true, start_year:Time.now.year, end_year:1930
+          - if @user.errors.include?(:birthdate)
+            small.text-danger
+              = @user.errors.full_messages_for(:birthdate).first
+        .field
+          = f.password_field :password, autocomplete: "new-password", class: 'form-control'
+          = f.label :password
+          - if @user.errors.include?(:password)
+            small.text-danger
+              = @user.errors.full_messages_for(:password).first
+        .field
+          = f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control'
+          = f.label :password_confirmation
+        .actions
+          = f.submit "作成する", class: 'submitBtn'

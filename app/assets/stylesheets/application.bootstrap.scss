@@ -1,2 +1,128 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+
+
+.centerViewWrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100dvh;
+    .centerViewArea {
+        max-width: 600px;
+        width: 100%;
+        border-radius: 16px;
+        background: rgba(0, 0, 0);
+
+        .inner {
+            padding: 60px 80px;
+            color: #fff;
+            .field {
+                position:relative;
+                padding: 8px 0;
+                input {
+                    border: 1px solid rgb(51, 54, 57);
+                    background: rgba(0, 0, 0);
+                    padding: 1.25em 0.5em 0.5em;
+                    color: #fff;
+                    + label {
+                        display:block;
+                        cursor:text;
+                        color:rgb(51, 54, 57);
+                        transition:.15s ease-out all;
+                        position:absolute;
+                        top: 50%;
+                        left: 0.75em;
+                        transform: translateY(-50%);
+                        font-size: 15px;
+                        line-height: 38px;
+                        font-weight: 700;
+                        &.stay {
+                            top: 1.25em;
+                            left:0.75em;
+                            line-height: inherit;
+                            transform: none;
+                            font-size:.7em;
+                            color: rgb(29, 155, 240);
+                            font-weight:bold;
+                            transition:.15s ease-out all;
+                        }
+                    }
+
+                    &:focus {
+                        outline:none;
+                        border: 1px solid rgb(29, 155, 240);
+                        color: #fff;
+                        + label, label.stay {
+                            top: 1.25em;
+                            left: 0.75em;
+                            transform: none;
+                            line-height: inherit;
+                            font-size:.7em;
+                            color: rgb(29, 155, 240);
+                            font-weight:bold;
+                            transition:.15s ease-out all;
+                        }
+                    }
+                }
+                
+                .field_with_errors {
+                    &:nth-of-type(1) {
+                        margin-top: 1.5em;
+                        input {
+                            padding: 0.75em 0.5em;
+                        }
+                    }
+                    &:nth-of-type(2) {
+                        position: absolute;
+                        top: 0;
+                    }
+                }
+                &.birthdate_field {
+                    label {
+                        display: block;
+                    }
+                    select {
+                        border: 1px solid rgb(51, 54, 57);
+                        background: rgba(0, 0, 0);
+                        padding: 0.75em 0.5em;
+                        color: #fff;
+                        border-radius: 0.375rem;
+                        
+                        &#user_birthdate_1i {
+                            width: 10em;
+                        }
+                        &#user_birthdate_2i, &#user_birthdate_3i  {
+                            width: 7em;
+                        }
+                    }
+                    .field_with_errors {
+                        &:nth-of-type(1) {
+                            margin-top: 0;
+                            input {
+                                padding: 0.75em 0.5em;
+                            }
+                        }
+                        &:nth-of-type(2) {
+                            position: relative;
+                            top: 0;
+                        }
+                    }
+                }
+            }
+            .actions {
+                margin-top: 1em;
+                input {
+                    &.submitBtn {
+                        width: 100%;
+                        border-radius: 30px;
+                        line-height: 30px;
+                        background: #fff;
+                        height: 50px;
+                        font-weight: 700;
+                    }
+                }
+            }
+        }
+        
+    }
+}
