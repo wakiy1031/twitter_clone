@@ -39,3 +39,8 @@
           = f.label :password_confirmation
         .actions
           = f.submit "作成する", class: 'submitBtn'
+      - if devise_mapping.omniauthable?
+        - resource_class.omniauth_providers.each do |provider|
+          p.text-center.mt-2 または
+          = button_to omniauth_authorize_path(resource_name, provider), data: { turbo: false }, class: "btn btn-dark mt-auto githubBtn"
+            div.bi.bi-github.fs-6.mx-2 #{OmniAuth::Utils.camelize(provider)}でログイン
