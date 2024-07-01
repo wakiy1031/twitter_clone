@@ -122,6 +122,18 @@
                     }
                 }
             }
+            .githubBtn {
+                width: 100%;
+                border-radius: 30px;
+                line-height: 30px;
+                height: 50px;
+                font-weight: 700;
+                .bi-github {
+                    &::before {
+                        margin-right: 0.25em;
+                    }
+                }
+            }
         }
         
     }
