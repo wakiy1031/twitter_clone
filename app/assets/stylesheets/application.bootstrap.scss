@@ -1,6 +1,31 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
 
+body {
+    
+    &.log_out {
+        background: rgba(0, 0, 0, 0.8);
+        
+    }
+
+    &.log_in {
+        background: #000;
+        color: #fff;
+    }
+    
+}
+
+header {
+    nav {
+        .navbar-brand {
+            svg {
+                g > path {
+                    fill: #fff;
+                }
+            }
+        }
+    }
+}
 
 .centerViewWrap {
     display: flex;
