@@ -1,7 +1,21 @@
-- if user_signed_in?
-  .user-info
-    h2 = "こんにちは、#{@user.user_name}さん"
-  
-  .tweet-button
-    = link_to 'つぶやく', posts_path, data: { turbo: false }, class: "btn btn-primary"
+.container-fluid
+  .row
+    = render 'shared/sidebar'
+
+    main.col-7
+      .contentWrap
+        .nav-tabs-container.position-sticky
+          ul.nav.nav-tabs
+            li
+              a.active href="#" data-bs-toggle="tab" data-bs-target="#for-you"
+                | おすすめ
+            li
+              a href="#" data-bs-toggle="tab" data-bs-target="#following"
+                | フォロー中
+
+        .tab-content
+          #for-you.tab-pane.fade.show.active
+            | おすすめの内容
+          #following.tab-pane.fade
+            | フォローしている内容
 

@@ -1,0 +1,31 @@
+    .col-2.sidebarWrap
+      .position-sticky.pt-3
+        nav.sidebar.d-flex.flex-column
+          ul.nav.nav-pills.flex-column.mb-auto
+            li
+              a.nav-link.link-light href="#"
+                i.bi.bi-house-door.me-3
+                | ホーム
+            li
+              a.nav-link.link-light href="#"
+                i.bi.bi-search.me-3
+                | 話題を検索
+            li
+              a.nav-link.link-light href="#"
+                i.bi.bi-bell.me-3
+                | 通知
+            li
+              a.nav-link.link-light href="#"
+                i.bi.bi-envelope.me-3
+                | メッセージ
+            li
+              a.nav-link.link-light href="#"
+                i.bi.bi-bookmark.me-3
+                | ブックマーク
+            li
+              a.nav-link.link-light href="#"
+                i.bi.bi-three-dots.me-3
+                | もっと見る
+
+          .d-grid.gap-2.mt-3
+            = button_to "Post", posts_path, method: :get, class: "postBtn"
