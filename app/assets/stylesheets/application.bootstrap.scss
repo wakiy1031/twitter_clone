@@ -303,7 +303,37 @@ main {
                 width: 1px;
             }
             .tab-pane {
-                padding: 1em;
+                padding: 1em 0;
+                .card {
+                    border-left: none;
+                    border-right: none;
+                    border-top: none;
+                    border-bottom: 1px solid #707070;
+                    border-radius: 0;
+                    .card-body {
+                        background: #000;
+                        h5 {
+                            font-size: 16px;
+                            font-weight: 700;
+                        }
+                        small.text-muted {
+                            font-size: 14px;
+                        }
+                        p.card-text {
+                            font-size: 14px;
+                        }
+                        .iconListWrap {
+                            .iconList {
+                                width: 100%;
+                                button {
+                                    i {
+                                        color: #707070;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }

@@ -1,0 +1,27 @@
+.card.mb-3
+  .card-body
+    .d-flex.align-items-start
+      = image_tag '', class: 'rounded-circle me-3', width: 48, height: 48, alt: 'Profile picture'
+      .flex-grow-1
+        .d-flex.justify-content-between.align-items-center
+          .d-flex.align-items-center
+            h5.card-title.mb-0
+                = post.user.user_name
+            small.text-muted.ms-2
+                | @
+                = post.user.user_name
+                |  ・ 
+                = time_ago_in_words(post.created_at)+ "前"
+        p.card-text.mt-2
+            = post.content
+    .d-flex.justify-content-between.align-items-center.mt-3.iconListWrap
+      .d-flex.justify-content-between.align-items-center.iconList
+        button.btn.btn-sm.me-2
+          i.bi.bi-chat
+        button.btn.btn-sm.me-2
+          i.bi.bi-repeat
+        button.btn.btn-sm
+          i.bi.bi-heart-fill
+          span.ms-1
+        button.btn.btn-sm
+          i.bi.bi-bookmark

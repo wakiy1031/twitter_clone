@@ -11,7 +11,7 @@ User.destroy_all
 
 10.times do |u|
   user = User.find_or_initialize_by(
-    user_name: "テストユーザー#{u + 1}",
+    user_name: "test_user#{u + 1}",
     email: "test-#{u + 1}@example.com",
     phone: "0901111222#{u + 1}",
   )
