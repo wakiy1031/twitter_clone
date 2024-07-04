@@ -171,7 +171,6 @@ header {
 
 .sidebarWrap {
     padding: 0!important;
-    height: 100svh;
     .position-sticky {
         top: 0;
     }
@@ -211,7 +210,6 @@ main {
         background: #000;
         .nav-tabs-container {
             top: 0;
-            height: 70px;
             z-index: 3;
 
             ul {
@@ -286,7 +284,6 @@ main {
         }
         .tab-content {
             position: relative;
-            height: 100svh;
             &::before {
                 content: '';
                 position: absolute;
