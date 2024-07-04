@@ -15,7 +15,15 @@
 
         .tab-content
           #for-you.tab-pane.fade.show.active
-            | おすすめの内容
+            - @posts.each do |post|
+              .d-flex.flex-row
+                p.card-title.fw-bold
+                  = post.user.user_name
+                p.card-subtitle.text-muted.d-flex.align-items-center.mx-2
+                  | @
+                  = post.user.user_name
+              p.card-text
+                = post.content.html_safe
           #following.tab-pane.fade
             | フォローしている内容
 
