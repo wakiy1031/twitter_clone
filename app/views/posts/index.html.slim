@@ -14,6 +14,7 @@
                 | フォロー中
 
         .tab-content
+          = render 'form', :user => @user, :post => @post
           #for-you.tab-pane.fade.show.active
             - @posts.each do |post|
               = render post

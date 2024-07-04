@@ -304,35 +304,67 @@ main {
             }
             .tab-pane {
                 padding: 1em 0;
-                .card {
-                    border-left: none;
-                    border-right: none;
-                    border-top: none;
-                    border-bottom: 1px solid #707070;
-                    border-radius: 0;
-                    .card-body {
-                        background: #000;
-                        h5 {
-                            font-size: 16px;
-                            font-weight: 700;
-                        }
-                        small.text-muted {
-                            font-size: 14px;
-                        }
-                        p.card-text {
-                            font-size: 14px;
-                        }
-                        .iconListWrap {
-                            .iconList {
-                                width: 100%;
-                                button {
-                                    i {
-                                        color: #707070;
-                                    }
+                
+            }
+            .card {
+                border-left: none;
+                border-right: none;
+                border-top: none;
+                border-bottom: 1px solid #707070;
+                border-radius: 0;
+                .card-body {
+                    background: #000;
+                    h5 {
+                        font-size: 16px;
+                        font-weight: 700;
+                    }
+                    small.text-muted {
+                        font-size: 14px;
+                    }
+                    p.card-text {
+                        font-size: 14px;
+                    }
+                    .iconListWrap {
+                        .iconList {
+                            width: 100%;
+                            button {
+                                i {
+                                    color: #707070;
                                 }
                             }
                         }
                     }
+
+                    // ポストフォーム
+                    &.postForm {
+                        .post-content {
+                            width: 100%;
+                            background: #000;
+                            border: none;
+                            color: #fff;
+                            font-size: 18px;
+
+                            &:focus-visible {
+                                border-bottom: 1px solid #707070;
+                                outline: none;
+
+                            }
+
+                        }
+                        .bi-image {
+                            color: rgb(29, 155, 240);
+                        }
+                        .postBtn {
+                            border-radius: 30px;
+                            padding: 0.5em;
+                            text-align: center;
+                            width: 90%;
+                            max-width: 120px;
+                            background: rgb(29, 155, 240);
+                            color: #fff;
+                            font-weight: 700;
+                        }
+                    } 
                 }
             }
         }
