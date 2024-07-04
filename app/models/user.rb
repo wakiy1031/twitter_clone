@@ -11,6 +11,24 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_one_attached :avatar_image
 
+  # フォローする
+  has_many :active_follows,
+                      class_name: "Follow",
+                      foreign_key: "follower_id",
+                      dependent: :destroy
+
+  # フォローされている
+  has_many :passive_follows,
+                      class_name: "Follow",
+                      foreign_key: "followee_id",
+                      dependent: :destroy
+
+  # フォローしているユーザーの情報
+  has_many :followees, through: :active_follows, source: :followee
+
+  #　フォローされているユーザーの情報
+  has_many :followers, through: :passive_follows, source: :follower
+
   validates :phone, presence: true, unless: :provider_github?
   validates :birthdate, presence: true, unless: :provider_github?
   validates :user_name, presence: true, uniqueness: true
