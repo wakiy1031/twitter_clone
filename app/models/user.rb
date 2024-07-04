@@ -9,6 +9,7 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: %i[github]
 
   has_many :posts, dependent: :destroy
+  has_one_attached :avatar_image
 
   validates :phone, presence: true, unless: :provider_github?
   validates :birthdate, presence: true, unless: :provider_github?

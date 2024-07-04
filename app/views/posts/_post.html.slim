@@ -1,7 +1,7 @@
 .card.mb-3
   .card-body
     .d-flex.align-items-start
-      = image_tag '', class: 'rounded-circle me-3', width: 48, height: 48, alt: 'Profile picture'
+      = image_tag post.user.avatar_image, class: 'rounded-circle me-2', width: 40, height: 40, alt: 'Profile picture'
       .flex-grow-1
         .d-flex.justify-content-between.align-items-center
           .d-flex.align-items-center

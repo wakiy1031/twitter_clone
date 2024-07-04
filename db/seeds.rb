@@ -18,6 +18,10 @@ User.destroy_all
   user.birthdate = "2024-07-03"
   user.password = "password"
   user.password_confirmation = "password"
+  user.avatar_image.attach(
+    io: File.open(Rails.root.join('app/assets/images/default.webp')),
+    filename: 'avatar.jpg'
+  )
   user.skip_confirmation!
   user.save!
 
