@@ -223,6 +223,15 @@ header {
             background: rgb(29, 155, 240);
             color: #fff;
             font-weight: 700;
+            margin-top: 2em;
+        }
+        .userProfile {
+            margin-top: 2em;
+            margin-left: 1em;
+            width: 90%;
+            h5 {
+                font-size: 16px;
+            }
         }
     }
 }
