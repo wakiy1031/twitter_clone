@@ -32,7 +32,9 @@
             = button_to "Post", posts_path, method: :get, class: "postBtn"
           .d-flex.align-items-start.userProfile
             - if @user.avatar_image.attached?
-            = image_tag @user.avatar_image, class: "rounded-circle me-2", width: 40, height: 40, alt: 'Profile picture'
+              = image_tag @user.avatar_image, class: "rounded-circle me-2", width: 40, height: 40, alt: 'Profile picture'
+            - else
+              = image_tag 'default.webp', class: "rounded-circle me-2", width: 40, height: 40, alt: 'Default profile picture'
             .flex-grow-1
               h5.card-title.mb-0
                 = @user.user_name
