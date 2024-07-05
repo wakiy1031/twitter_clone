@@ -13,20 +13,22 @@ class User < ApplicationRecord
 
   # フォローする
   has_many :active_follows,
-                      class_name: "Follow",
-                      foreign_key: "follower_id",
-                      dependent: :destroy
+           class_name: 'Follow',
+           foreign_key: 'follower_id',
+           dependent: :destroy,
+           inverse_of: :follower
 
   # フォローされている
   has_many :passive_follows,
-                      class_name: "Follow",
-                      foreign_key: "followee_id",
-                      dependent: :destroy
+           class_name: 'Follow',
+           foreign_key: 'followee_id',
+           dependent: :destroy,
+           inverse_of: :followee
 
   # フォローしているユーザーの情報
   has_many :followees, through: :active_follows, source: :followee
 
-  #　フォローされているユーザーの情報
+  # 　フォローされているユーザーの情報
   has_many :followers, through: :passive_follows, source: :follower
 
   validates :phone, presence: true, unless: :provider_github?
