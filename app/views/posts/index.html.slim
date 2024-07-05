@@ -7,18 +7,20 @@
         .nav-tabs-container.position-sticky
           ul.nav.nav-tabs
             li
-              a.active href="#" data-bs-toggle="tab" data-bs-target="#for-you"
+              a class="#{@active_tab == 'for-you' ? 'active' : ''}" href="#" data-bs-toggle="tab" data-bs-target="#for-you"
                 | おすすめ
             li
-              a href="#" data-bs-toggle="tab" data-bs-target="#following"
+              a class="#{@active_tab == 'following' ? 'active' : ''}" href="#" data-bs-toggle="tab" data-bs-target="#following"
                 | フォロー中
 
         .tab-content
           = render 'form', :user => @user, :post => @post
-          #for-you.tab-pane.fade.show.active
+          #for-you.tab-pane.fade class="#{@active_tab == 'for-you' ? 'show active' : ''}"
             - @posts.each do |post|
               = render post
-          #following.tab-pane.fade
+            = paginate @posts, :param_name => 'posts_page', :params => { :tab => 'for-you' }
+          #following.tab-pane.fade class="#{@active_tab == 'following' ? 'show active' : ''}"
             - @followees_posts.each do |post|
               = render post
+            = paginate @followees_posts, :param_name => 'followees_page', :params => { :tab => 'following' }         
 
