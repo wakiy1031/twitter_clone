@@ -9,6 +9,8 @@
 
 User.destroy_all
 
+users = []
+
 10.times do |u|
   user = User.find_or_initialize_by(
     user_name: "test_user#{u + 1}",
@@ -25,6 +27,8 @@ User.destroy_all
   user.skip_confirmation!
   user.save!
 
+  users << user
+
   5.times do |t|
     post = user.posts.build(
       content: "テストユーザー#{u + 1}の#{t + 1}個目のツイート"
@@ -34,6 +38,11 @@ User.destroy_all
 
 end
 
+first_user = users.first
+[1, 3, 5, 7].each do |index|
+  first_user.follow(users[index].id)
+end
+
 puts "ユーザーと投稿の確認:"
 User.all.each do |user|
   puts "ユーザー: #{user.user_name}"
@@ -41,4 +50,10 @@ User.all.each do |user|
     puts "  - #{post.content}"
   end
   puts "\n"
+end
+
+puts "フォロー関係の確認:"
+puts "#{first_user.user_name}がフォローしているユーザー:"
+first_user.followees.each do |followed_user|
+  puts "  - #{followed_user.user_name}"
 end

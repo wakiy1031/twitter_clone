@@ -19,5 +19,6 @@
             - @posts.each do |post|
               = render post
           #following.tab-pane.fade
-            | フォローしている内容
+            - @followees_posts.each do |post|
+              = render post
 

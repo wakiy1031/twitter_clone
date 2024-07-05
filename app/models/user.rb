@@ -42,6 +42,21 @@ class User < ApplicationRecord
     end
   end
 
+  # フォローする
+  def follow(user_id)
+    active_follows.create(followee_id: user_id)
+  end
+
+  # フォローを外す
+  def unfollow(user_id)
+    active_follows.find_by(followee_id: user_id).destroy
+  end
+
+  # すでにフォローしているのか確認
+  def following?(user)
+    followees.include?(user)
+  end
+
   private
 
   def provider_github?
