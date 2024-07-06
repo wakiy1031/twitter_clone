@@ -370,6 +370,9 @@ main {
 
                     // ポストフォーム
                     &.postForm {
+                        form {
+                            width: 100%;
+                        }
                         .post-content {
                             width: 100%;
                             background: #000;

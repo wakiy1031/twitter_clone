@@ -1,0 +1,15 @@
+.container-fluid
+  .row
+    = render 'shared/sidebar'
+
+    main.col-7
+      .contentWrap
+        .nav-tabs-container.position-sticky
+          ul.nav.nav-tabs
+            li
+              a class="#{@active_tab == 'for-you' ? 'active' : ''}" href="#" data-bs-toggle="tab" data-bs-target="#for-you"
+                | おすすめ
+            li
+              a class="#{@active_tab == 'following' ? 'active' : ''}" href="#" data-bs-toggle="tab" data-bs-target="#following"
+                | フォロー中
+

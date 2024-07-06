@@ -4,7 +4,7 @@
         nav.sidebar.d-flex.flex-column
           ul.nav.nav-pills.flex-column.mb-auto
             li
-              a.nav-link.link-light href="#"
+              = link_to posts_path, class: 'nav-link link-light' do
                 i.bi.bi-house-door.me-3
                 | ホーム
             li
@@ -24,10 +24,13 @@
                 i.bi.bi-bookmark.me-3
                 | ブックマーク
             li
+              = link_to user_path(current_user), class: 'nav-link link-light' do
+                i.bi.bi-person.me-3
+                | プロフィール
+            li
               a.nav-link.link-light href="#"
                 i.bi.bi-three-dots.me-3
                 | もっと見る
-
           .d-grid.gap-2
             = button_to "Post", posts_path, method: :get, class: "postBtn"
           .d-flex.align-items-start.userProfile
