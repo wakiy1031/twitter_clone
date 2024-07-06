@@ -1,6 +1,60 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
 
+body {
+    
+    &.log_out {
+        background: rgba(0, 0, 0, 0.8);
+        
+    }
+
+    &.log_in {
+        background: #000;
+        color: #fff;
+        header {
+            border-bottom: 1px solid #707070;
+        }
+    }
+    
+}
+
+header {
+    height: 60px;
+    nav {
+        .navbar-brand {
+            padding-left: .5em;
+            svg {
+                g > path {
+                    fill: #fff;
+                }
+            }
+        }
+    }
+}
+
+.pagination {
+    border: #707070;
+    > li {
+        --bs-pagination-border-color: #707070;
+        a {          
+            color: #707070;   
+            background: transparent;
+        }
+        &:hover {
+            a {
+                background: #fff;
+                border-color: #707070;
+                color: rgb(29, 155, 240);   
+            }
+        }
+        &.active {
+            a {
+                background: rgb(29, 155, 240);
+                border-color: rgb(29, 155, 240);
+            }
+        }
+    }
+}
 
 .centerViewWrap {
     display: flex;
@@ -136,5 +190,216 @@
             }
         }
         
+    }
+}
+
+.sidebarWrap {
+    padding: 0!important;
+    .position-sticky {
+        top: 0;
+    }
+    nav {
+        ul {
+            li {
+                border-radius: 30px;
+                width: fit-content;
+                &:hover {
+                    background: rgba(80, 80, 80, 0.3);
+                }
+                a {
+                    font-size: 20px;
+                    padding: .5em .75em;
+                }
+                + li {
+                    margin-top: .75em;
+                }
+            }
+        }
+        .postBtn {
+            border-radius: 30px;
+            padding: 0.75em;
+            text-align: center;
+            width: 90%;
+            background: rgb(29, 155, 240);
+            color: #fff;
+            font-weight: 700;
+            margin-top: 2em;
+        }
+        .userProfile {
+            margin-top: 2em;
+            margin-left: 1em;
+            width: 90%;
+            h5 {
+                font-size: 16px;
+            }
+        }
+    }
+}
+
+main {
+    padding: 0!important;
+    
+    .contentWrap {
+        background: #000;
+        .nav-tabs-container {
+            top: 0;
+            z-index: 3;
+
+            ul {
+                display: flex;
+                height: 60px;
+                line-height: 60px;
+                padding: 0;
+                border-bottom: 1px solid #707070;
+                background-color: rgba(0, 0, 0, 0.65);
+                -webkit-backdrop-filter: blur(5px);
+                backdrop-filter: blur(5px);
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    background: #707070;
+                    height: 100svh;
+                    width: 1px;
+                    z-index: -1;
+                }
+                &::after {
+                    content: '';
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                    background: #707070;
+                    height: 100svh;
+                    width: 1px;
+                    z-index: -1;
+                }
+                
+                li {
+                    width: 50%;
+                    list-style: none;
+                    text-align: center;
+                    a {
+                        display: block;
+                        text-align: center;
+                        text-decoration: none;
+                        color: #707070;
+                        position: relative;
+
+                        &:hover {
+                            background: rgba(80, 80, 80, 0.3);
+                        }
+                        
+                        &.active {
+                            font-weight: 700;
+                            color: #fff;
+                            &::before {
+                                content: '';
+                                position: absolute;
+                                background: rgb(29, 155, 240);
+                                display: block;
+                                width: 100px;
+                                height: 5px;
+                                bottom: 0;
+                                left: 50%;
+                                transform: translateX(-50%);
+                                border-radius: 5px;
+                                z-index: 5;
+                            }
+                        }
+
+                        
+                    }
+                    
+                }
+            }
+        }
+        .tab-content {
+            position: relative;
+            &::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                background: #707070;
+                height: 100%;
+                width: 1px;
+            }
+            &::after {
+                content: '';
+                position: absolute;
+                right: 0;
+                top: 0;
+                background: #707070;
+                height: 100%;
+                width: 1px;
+            }
+            .tab-pane {
+                padding: 1em 0;
+                
+            }
+            .card {
+                border-left: none;
+                border-right: none;
+                border-top: none;
+                border-bottom: 1px solid #707070;
+                border-radius: 0;
+                .card-body {
+                    background: #000;
+                    h5 {
+                        font-size: 16px;
+                        font-weight: 700;
+                    }
+                    small.text-muted {
+                        font-size: 14px;
+                    }
+                    p.card-text {
+                        font-size: 14px;
+                    }
+                    .iconListWrap {
+                        .iconList {
+                            width: 100%;
+                            button {
+                                i {
+                                    color: #707070;
+                                }
+                            }
+                        }
+                    }
+
+                    // ポストフォーム
+                    &.postForm {
+                        .post-content {
+                            width: 100%;
+                            background: #000;
+                            border: none;
+                            color: #fff;
+                            font-size: 18px;
+
+                            &:focus-visible {
+                                border-bottom: 1px solid #707070;
+                                outline: none;
+
+                            }
+
+                        }
+                        .bi-image {
+                            color: rgb(29, 155, 240);
+                        }
+                        .postBtn {
+                            border-radius: 30px;
+                            padding: 0.5em;
+                            text-align: center;
+                            width: 90%;
+                            max-width: 120px;
+                            background: rgb(29, 155, 240);
+                            color: #fff;
+                            font-weight: 700;
+                        }
+                    } 
+                }
+            }
+        }
     }
 }

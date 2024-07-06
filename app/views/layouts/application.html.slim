@@ -8,17 +8,20 @@ html
     = csp_meta_tag
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_include_tag "application", "data-turbo-track": "reload", defer: true
-  body
+  body class="#{user_signed_in? ? 'log_in' : 'log_out'}"
     header
-      nav.navbar.navbar-expand-lg.navbar-light.bg-light
+      nav.navbar.navbar-expand-lg.navbar-light
         .container
-          = link_to 'Twitter クローン', root_path, data: { turbo: false }, class: 'navbar-brand'
+          = link_to root_path, data: { turbo: false }, class: 'navbar-brand'
+            svg viewBox="0 0 24 24" aria-hidden="true" width="30"
+              g
+                path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
           .navbar-nav.ml-auto
             - if user_signed_in?
-              = link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete }, class: 'nav-item nav-link'
+              = link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete }, class: 'btn btn-outline-light'
             - else
-              = link_to 'ログイン', new_user_session_path, data: { turbo: false }, class: 'nav-item nav-link'
-              = link_to '新規登録', new_user_registration_path, data: { turbo: false }, class: 'nav-item nav-link'
+              = link_to 'ログイン', new_user_session_path, data: { turbo: false }, class: 'btn btn-outline-light mx-3'
+              = link_to '新規登録', new_user_registration_path, data: { turbo: false }, class: 'btn btn-outline-primary'
     .container
       = render 'shared/flash'
       = yield

@@ -8,6 +8,29 @@ class User < ApplicationRecord
          :confirmable, :lockable, :timeoutable, :trackable,
          :omniauthable, omniauth_providers: %i[github]
 
+  has_many :posts, dependent: :destroy
+  has_one_attached :avatar_image
+
+  # フォローする
+  has_many :active_follows,
+           class_name: 'Follow',
+           foreign_key: 'follower_id',
+           dependent: :destroy,
+           inverse_of: :follower
+
+  # フォローされている
+  has_many :passive_follows,
+           class_name: 'Follow',
+           foreign_key: 'followee_id',
+           dependent: :destroy,
+           inverse_of: :followee
+
+  # フォローしているユーザーの情報
+  has_many :followees, through: :active_follows, source: :followee
+
+  # 　フォローされているユーザーの情報
+  has_many :followers, through: :passive_follows, source: :follower
+
   validates :phone, presence: true, unless: :provider_github?
   validates :birthdate, presence: true, unless: :provider_github?
   validates :user_name, presence: true, uniqueness: true
@@ -19,6 +42,21 @@ class User < ApplicationRecord
       user.user_name = auth.info.nickname
       user.skip_confirmation!
     end
+  end
+
+  # フォローする
+  def follow(user_id)
+    active_follows.create(followee_id: user_id)
+  end
+
+  # フォローを外す
+  def unfollow(user_id)
+    active_follows.find_by(followee_id: user_id).destroy
+  end
+
+  # すでにフォローしているのか確認
+  def following?(user)
+    followees.include?(user)
   end
 
   private
