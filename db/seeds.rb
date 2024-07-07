@@ -16,7 +16,10 @@ users = []
   user = User.find_or_initialize_by(
     user_name: "test_user#{u + 1}",
     email: "test-#{u + 1}@example.com",
-    phone: "0901111222#{u + 1}"
+    phone: "0901111222#{u + 1}",
+    introduction: "自己紹介文が入ります",
+    place: "日本 東京",
+    website: "example.com"
   )
   user.birthdate = '2024-07-03'
   user.password = 'password'
