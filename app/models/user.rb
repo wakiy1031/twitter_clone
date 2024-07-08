@@ -10,6 +10,7 @@ class User < ApplicationRecord
 
   has_many :posts, dependent: :destroy
   has_one_attached :avatar_image
+  has_one_attached :header_image
 
   # フォローする
   has_many :active_follows,
@@ -30,6 +31,14 @@ class User < ApplicationRecord
 
   # 　フォローされているユーザーの情報
   has_many :followers, through: :passive_follows, source: :follower
+
+  has_many :likes, dependent: :destroy
+  has_many :reposts, dependent: :destroy
+  has_many :comments, dependent: :destroy
+
+  has_many :like_posts, through: :likes, source: :post
+  has_many :repost_posts, through: :reposts, source: :post
+  has_many :comment_posts, through: :comments, source: :post
 
   validates :phone, presence: true, unless: :provider_github?
   validates :birthdate, presence: true, unless: :provider_github?
@@ -57,6 +66,14 @@ class User < ApplicationRecord
   # すでにフォローしているのか確認
   def following?(user)
     followees.include?(user)
+  end
+
+  def repost(post)
+    reposts.create(post_id: post.id)
+  end
+
+  def like(post)
+    likes.create(post_id: post.id)
   end
 
   private
