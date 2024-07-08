@@ -19,12 +19,18 @@
             = post.content
     .d-flex.justify-content-between.align-items-center.mt-3.iconListWrap
       .d-flex.justify-content-between.align-items-center.iconList
-        button.btn.btn-sm.me-2
-          i.bi.bi-chat
-        button.btn.btn-sm.me-2
-          i.bi.bi-repeat
         button.btn.btn-sm
-          i.bi.bi-heart-fill
+          i.bi.bi-chat.me-1
+          span
+            = post.comments.size
+        button.btn.btn-sm.repost class=('active' if post.reposts.size > 0)
+          i.bi.bi-repeat.me-1
+          span
+            = post.reposts.size
+        button.btn.btn-sm.like class=('active' if post.likes.size > 0)
+          i.bi.bi-heart-fill.me-1
+          span
+            = post.likes.size
           span.ms-1
         button.btn.btn-sm
           i.bi.bi-bookmark

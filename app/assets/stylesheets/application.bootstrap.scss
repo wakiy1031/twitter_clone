@@ -406,8 +406,25 @@ main {
                         .iconList {
                             width: 100%;
                             button {
+                                color: rgb(113, 118, 123);
                                 i {
                                     color: rgb(113, 118, 123);
+                                }
+                                &.active {
+                                    border: none;
+
+                                    &.repost {
+                                        color: rgb(0, 186, 124);
+                                        i {
+                                            color: rgb(0, 186, 124);
+                                        }
+                                    }
+                                    &.like {
+                                        color: rgb(249, 24, 128);
+                                        i {
+                                            color: rgb(249, 24, 128);
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -511,7 +528,7 @@ main {
                             vertical-align: middle;
                         }
                         + span {
-                            padding-left: .5em;
+                            padding-left: .75em;
                         }
                     }
                 }
