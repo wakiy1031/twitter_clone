@@ -10,6 +10,7 @@ class User < ApplicationRecord
 
   has_many :posts, dependent: :destroy
   has_one_attached :avatar_image
+  has_one_attached :header_image
 
   # フォローする
   has_many :active_follows,

@@ -314,6 +314,40 @@ main {
                     
                 }
             }
+
+            &.profile-sticky {
+                position: relative;
+                &::before {
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    background: #707070;
+                    height: 100%;
+                    width: 1px;
+                }
+                &::after {
+                    content: '';
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                    background: #707070;
+                    height: 100%;
+                    width: 1px;
+                }
+                a {
+                    padding-left: 1em;
+                    i {
+                        font-size: 30px;
+                    }
+                } 
+                h5 {
+                    margin-bottom: 0;
+                }
+                small {
+                    color: #707070;
+                }
+            }
         }
         .tab-content {
             position: relative;
@@ -401,6 +435,59 @@ main {
                             font-weight: 700;
                         }
                     } 
+                }
+            }
+        }
+        .profileArea {
+            position: relative;
+            &::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                background: #707070;
+                height: 100%;
+                width: 1px;
+            }
+            &::after {
+                content: '';
+                position: absolute;
+                right: 0;
+                top: 0;
+                background: #707070;
+                height: 100%;
+                width: 1px;
+            }
+            .profileDetailArea {
+                position: relative;
+                padding: 12px 16px 0;
+                .profile-image {
+                    margin-top: -15%;
+                    margin-bottom: 20px;
+                    width: 17%;
+                    position: relative;
+
+                    &::before {
+                        content: '';
+                        position: absolute;
+                        display: block;
+                        background: #000;
+                        width: 105%;
+                        height: 105%;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        z-index: 2;
+                        border-radius: 50%;
+                    }
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        z-index: 3;
+                        position: relative;
+                    }
+
                 }
             }
         }
