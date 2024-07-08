@@ -41,22 +41,73 @@ users = []
   end
 end
 
-first_user = users.first
-[1, 3, 5, 7].each do |index|
-  first_user.follow(users[index].id)
-end
+odd_users = users.values_at(2, 4, 6, 8, 10)
+even_users = users.values_at(1, 3, 5, 7, 9)
 
-Rails.logger.debug 'ユーザーと投稿の確認:'
-User.all.each do |user|
-  Rails.logger.debug "ユーザー: #{user.user_name}"
-  user.posts.each do |post|
-    Rails.logger.debug "  - #{post.content}"
+odd_users.each do |user|
+  even_users.each do |target|
+    # フォロー
+    user.follow(target.id)
+
+    # いいね、リポスト、コメント
+    target.posts.each do |post|
+      user.like(post)
+      user.repost(post)
+      user.comments.create(post: post, content: "#{user.user_name}からのコメントです。")
+    end
   end
-  Rails.logger.debug "\n"
 end
 
-Rails.logger.debug 'フォロー関係の確認:'
-Rails.logger.debug "#{first_user.user_name}がフォローしているユーザー:"
-first_user.followees.each do |followed_user|
-  Rails.logger.debug "  - #{followed_user.user_name}"
+even_users.each do |user|
+  odd_users.each do |target|
+    # フォロー
+    user.follow(target.id)
+
+    # いいね、リポスト、コメント
+    target.posts.each do |post|
+      user.like(post)
+      user.repost(post)
+      user.comments.create(post: post, content: "#{user.user_name}からのコメントです。")
+    end
+  end
+end
+
+# 動作確認
+puts "ユーザーと投稿の確認:"
+User.all.each do |user|
+  puts "ユーザー: #{user.user_name}"
+  user.posts.each do |post|
+    puts "  - 投稿: #{post.content}"
+    puts "    - いいね数: #{post.likes.count}"
+    puts "    - リポスト数: #{post.reposts.count}"
+    puts "    - コメント数: #{post.comments.count}"
+  end
+  puts "\n"
+end
+
+puts "フォロー関係の確認:"
+User.all.each do |user|
+  puts "#{user.user_name}がフォローしているユーザー:"
+  user.followees.each do |followed_user|
+    puts "  - #{followed_user.user_name}"
+  end
+  puts "\n"
+end
+
+puts "いいね、リポスト、コメントの詳細:"
+Post.all.each do |post|
+  puts "投稿: #{post.content} (by #{post.user.user_name})"
+  puts "  いいねしたユーザー:"
+  post.likes.each do |like|
+    puts "    - #{like.user.user_name}"
+  end
+  puts "  リポストしたユーザー:"
+  post.reposts.each do |repost|
+    puts "    - #{repost.user.user_name}"
+  end
+  puts "  コメント:"
+  post.comments.each do |comment|
+    puts "    - #{comment.user.user_name}: #{comment.content}"
+  end
+  puts "\n"
 end
