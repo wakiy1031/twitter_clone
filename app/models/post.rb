@@ -13,6 +13,8 @@ class Post < ApplicationRecord
   has_many :repost_users, through: :reposts, source: :user
   has_many :comment_users, through: :comments, source: :user
 
+  scope :includes_desc, -> { includes(:user).order(created_at: :desc) }
+
   def reposted_by?(user)
     repost_users.include?(user)
   end
