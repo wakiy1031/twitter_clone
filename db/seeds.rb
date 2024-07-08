@@ -41,8 +41,8 @@ users = []
   end
 end
 
-odd_users = users.values_at(2, 4, 6, 8, 10)
-even_users = users.values_at(1, 3, 5, 7, 9)
+odd_users = users.values_at(1, 3, 5, 7, 9)
+even_users = users.values_at(0, 2, 4, 6, 8)
 
 odd_users.each do |user|
   even_users.each do |target|
