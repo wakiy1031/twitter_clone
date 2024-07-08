@@ -13,7 +13,6 @@ class Post < ApplicationRecord
   has_many :repost_users, through: :reposts, source: :user
   has_many :comment_users, through: :comments, source: :user
 
-
   def reposted_by?(user)
     repost_users.include?(user)
   end
@@ -21,6 +20,4 @@ class Post < ApplicationRecord
   def liked_by?(user)
     like_users.include?(user)
   end
-
-
 end

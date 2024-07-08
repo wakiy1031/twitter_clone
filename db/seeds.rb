@@ -17,9 +17,9 @@ users = []
     user_name: "test_user#{u + 1}",
     email: "test-#{u + 1}@example.com",
     phone: "0901111222#{u + 1}",
-    introduction: "自己紹介文が入ります",
-    place: "日本 東京",
-    website: "example.com"
+    introduction: '自己紹介文が入ります',
+    place: '日本 東京',
+    website: 'example.com'
   )
   user.birthdate = '2024-07-03'
   user.password = 'password'
@@ -53,7 +53,7 @@ odd_users.each do |user|
     target.posts.each do |post|
       user.like(post)
       user.repost(post)
-      user.comments.create(post: post, content: "#{user.user_name}からのコメントです。")
+      user.comments.create(post:, content: "#{user.user_name}からのコメントです。")
     end
   end
 end
@@ -67,47 +67,47 @@ even_users.each do |user|
     target.posts.each do |post|
       user.like(post)
       user.repost(post)
-      user.comments.create(post: post, content: "#{user.user_name}からのコメントです。")
+      user.comments.create(post:, content: "#{user.user_name}からのコメントです。")
     end
   end
 end
 
 # 動作確認
-puts "ユーザーと投稿の確認:"
+Rails.logger.debug 'ユーザーと投稿の確認:'
 User.all.each do |user|
-  puts "ユーザー: #{user.user_name}"
+  Rails.logger.debug "ユーザー: #{user.user_name}"
   user.posts.each do |post|
-    puts "  - 投稿: #{post.content}"
-    puts "    - いいね数: #{post.likes.count}"
-    puts "    - リポスト数: #{post.reposts.count}"
-    puts "    - コメント数: #{post.comments.count}"
+    Rails.logger.debug "  - 投稿: #{post.content}"
+    Rails.logger.debug "    - いいね数: #{post.likes.count}"
+    Rails.logger.debug "    - リポスト数: #{post.reposts.count}"
+    Rails.logger.debug "    - コメント数: #{post.comments.count}"
   end
-  puts "\n"
+  Rails.logger.debug "\n"
 end
 
-puts "フォロー関係の確認:"
+Rails.logger.debug 'フォロー関係の確認:'
 User.all.each do |user|
-  puts "#{user.user_name}がフォローしているユーザー:"
+  Rails.logger.debug "#{user.user_name}がフォローしているユーザー:"
   user.followees.each do |followed_user|
-    puts "  - #{followed_user.user_name}"
+    Rails.logger.debug "  - #{followed_user.user_name}"
   end
-  puts "\n"
+  Rails.logger.debug "\n"
 end
 
-puts "いいね、リポスト、コメントの詳細:"
+Rails.logger.debug 'いいね、リポスト、コメントの詳細:'
 Post.all.each do |post|
-  puts "投稿: #{post.content} (by #{post.user.user_name})"
-  puts "  いいねしたユーザー:"
+  Rails.logger.debug "投稿: #{post.content} (by #{post.user.user_name})"
+  Rails.logger.debug '  いいねしたユーザー:'
   post.likes.each do |like|
-    puts "    - #{like.user.user_name}"
+    Rails.logger.debug "    - #{like.user.user_name}"
   end
-  puts "  リポストしたユーザー:"
+  Rails.logger.debug '  リポストしたユーザー:'
   post.reposts.each do |repost|
-    puts "    - #{repost.user.user_name}"
+    Rails.logger.debug "    - #{repost.user.user_name}"
   end
-  puts "  コメント:"
+  Rails.logger.debug '  コメント:'
   post.comments.each do |comment|
-    puts "    - #{comment.user.user_name}: #{comment.content}"
+    Rails.logger.debug "    - #{comment.user.user_name}: #{comment.content}"
   end
-  puts "\n"
+  Rails.logger.debug "\n"
 end
