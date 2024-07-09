@@ -2,11 +2,11 @@
   .card.bg-dark.text-white
     .card-body.postForm
       .d-flex.align-items-start
-        - if user.avatar_image.attached?
-          = link_to user_path(current_user), data: { turbo: false }
+        = link_to user_path(current_user), data: { turbo: false }
+          - if user.avatar_image.attached?
             = image_tag user.avatar_image, class: "rounded-circle me-3", width: 40, height: 40, alt: 'Profile picture'
-        - else
-          = image_tag 'default.webp', class: "rounded-circle me-2", width: 40, height: 40, alt: 'Default profile picture'
+          - else
+            = image_tag 'default.webp', class: "rounded-circle me-2", width: 40, height: 40, alt: 'Default profile picture'
         = form_with url: posts_path, model: post, data: { turbo: false }, locale: true do |f|
           .flex-grow-1
             = f.text_area :content, class: 'post-content auto-expand', placeholder: "What is happening?!", rows: 3, style: "resize: none;"
