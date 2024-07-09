@@ -51,7 +51,8 @@
               - if @user.birthdate
                 span
                   i.bi.bi-balloon.me-1
-                  = @user.birthdate
+                  | 誕生日: 
+                  = @user.birthdate.strftime('%Y年%m月%d日')
             span
               i.bi.bi-calendar3.me-2
               = l @user.created_at, format: :start

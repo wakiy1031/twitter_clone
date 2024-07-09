@@ -537,6 +537,9 @@ main {
                         z-index: 3;
                     }
                 }
+                h5 {
+                    font-weight: 700;
+                }
                 .profileEditBtn {
                     position: absolute;
                     right: 15px;
@@ -557,10 +560,11 @@ main {
                 }
                 .profileTextArea {
                     span {
-                        font-size: 16px;
+                        font-size: 15px;
+                        color: rgb(113, 118, 123);
                         i {
                             color: rgb(113, 118, 123);
-                            font-size: 18px;
+                            font-size: 17px;
                             vertical-align: middle;
                         }
                         a {
@@ -577,12 +581,14 @@ main {
                     }
                 }
                 span {
-                    font-size: 16px;
-                        i {
-                            color: rgb(113, 118, 123);
-                            font-size: 18px;
-                            vertical-align: middle;
-                        }
+                    font-size: 15px;
+                    color: rgb(113, 118, 123);
+                        
+                    i {
+                        color: rgb(113, 118, 123);
+                        font-size: 15px;
+                        vertical-align: baseline;
+                    }
                 }
                 .followNumArea {
                     display: flex;
