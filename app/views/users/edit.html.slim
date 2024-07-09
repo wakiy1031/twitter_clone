@@ -7,16 +7,16 @@
         .position-sticky.profile-sticky
           .d-flex.align-items-center
            = link_to user_path(current_user), class: 'nav-link link-light' do
-            i.bi.bi-x.me-4
+            i.bi.bi-arrow-left-short.me-4
            .name-content
             h5
                 | プロフィール編集
         .profileEditArea
           = form_with model: current_user, url: user_path(current_user), data: { turbo: false, "turbo-method": :put }  do |f| 
-            .form-group.mb-3
+            .form-group.my-3
               = f.label :avatar_image, class: "mb-2 block text-sm text-gray-600"
               = f.file_field :avatar_image, class: "form-control"
-            .form-group.mb-3
+            .form-group.my-3
               = f.label :header_image, class: "mb-2 block text-sm text-gray-600"
               = f.file_field :header_image, class: "form-control"
             .form-group.my-3
@@ -28,7 +28,7 @@
             .form-group.my-3
               = f.label :website, class: "mb-2 block text-sm text-gray-600"
               = f.text_field :website, class: "form-control"
-            .text-center.my-3
-              = link_to "戻る", user_path(current_user), data: { turbo: false }, class: "btn btn-outline-dark mx-1 fw-bold"
-              = f.submit '更新する', class: "btn btn-primary"
+            .text-center.row
+              = link_to "戻る", user_path(current_user), data: { turbo: false }, class: "col btn btn-outline-dark mx-1 fw-bold"
+              = f.submit '更新する', class: "col updateBtn"
                       

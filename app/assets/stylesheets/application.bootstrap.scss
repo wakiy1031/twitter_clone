@@ -585,5 +585,46 @@ main {
                 }
             }
         }
+        .profileEditArea {
+            padding-top: 40px;
+            height: 90svh;
+            border-left: 1px solid rgb(113, 118, 123);
+            border-right: 1px solid rgb(113, 118, 123);
+
+            form {
+                width: 90%;
+                margin: 0 auto;
+                .form-group {
+                    input,textarea {
+                        background: #000;
+                        border: 1px solid rgb(113, 118, 123);
+                        color: #fff;
+                    }
+                }
+                .updateBtn {
+                    width: 120px!important;
+                    border-radius: 30px;
+                    display: block;
+                    color: #fff;
+                    font-size: 14px;
+                    line-height: 36px;
+                    text-align: center;
+                    text-decoration: none;
+                    font-weight: 700;
+                    background: rgb(29, 155, 240);
+                }
+                .row {
+                    width: 40%;
+                    margin: 5em auto 0;
+                }
+                .btn-outline-dark {
+                    border-radius: 30px;
+                    border: 1px solid rgb(113, 118, 123);
+                    color: rgb(113, 118, 123);
+                    line-height: 36px;
+                }
+            }
+        }
+
     }
 }
