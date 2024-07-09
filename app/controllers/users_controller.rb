@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
+  before_action :set_user
+
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.includes_desc.page(params[:posts_page]).per(10)
@@ -9,5 +11,22 @@ class UsersController < ApplicationController
     @comment_posts = @user.comment_posts.includes_desc.page(params[:comment_page]).per(10)
 
     @active_tab = params[:tab] || 'post'
+  end
+
+  def edit; end
+
+  def update
+    @user = current_user
+    if @user.update(user_params)
+      redirect_to @user, notice: 'プロフィールが更新されました。'
+    else
+      render :edit
+    end
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(%i[avatar_image header_image name introduction place website])
   end
 end

@@ -26,8 +26,14 @@ ja:
         unlock_token: ロック解除用トークン
         updated_at: 更新日
         user_name: ユーザー名
+        name: 名前
         birthdate: 生年月日
         phone: 電話番号
+        introduction: 自己紹介
+        place: 場所
+        website: ウェブサイト
+        avatar_image: プロフィール画像
+        header_image: ヘッダー画像
     models:
       user: ユーザー
   devise:
