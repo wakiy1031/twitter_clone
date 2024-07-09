@@ -28,6 +28,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(%i[avatar_image header_image introduction place website])
+    params.require(:user).permit(%i[avatar_image header_image name introduction place website])
   end
 end

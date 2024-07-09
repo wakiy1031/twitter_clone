@@ -29,7 +29,10 @@
               = link_to "編集", edit_user_path(current_user), data: { turbo: false, "turbo-method": :post }
             .flex-grow-1
               h5.card-title
-                = @user.user_name
+                - if @user.name.present?
+                  = @user.name
+                - else 
+                  = @user.user_name
               small.text-muted
                 | @
                 = @user.user_name
@@ -44,14 +47,14 @@
               - if @user.website?
                 span
                   i.bi.bi-link-45deg.me-1
-                  = @user.website
+                  = link_to @user.website, @user.website, target: '_blank', rel: 'noopener noreferrer'
               - if @user.birthdate
                 span
                   i.bi.bi-balloon.me-1
                   = @user.birthdate
-              span
-                i.bi.bi-calendar3.me-2
-                = l @user.created_at, format: :start
+            span
+              i.bi.bi-calendar3.me-2
+              = l @user.created_at, format: :start
             .followNumArea.mt-3
               .num.me-3
                 = @user.followees.size

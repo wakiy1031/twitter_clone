@@ -563,10 +563,26 @@ main {
                             font-size: 18px;
                             vertical-align: middle;
                         }
+                        a {
+                            color: rgb(29, 155, 240);
+                            text-decoration: none;
+
+                            &:hover {
+                                text-decoration: underline;
+                            }
+                        }
                         + span {
                             padding-left: .75em;
                         }
                     }
+                }
+                span {
+                    font-size: 16px;
+                        i {
+                            color: rgb(113, 118, 123);
+                            font-size: 18px;
+                            vertical-align: middle;
+                        }
                 }
                 .followNumArea {
                     display: flex;
