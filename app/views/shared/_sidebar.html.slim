@@ -40,8 +40,11 @@
               - else
                 = image_tag 'default.webp', class: "rounded-circle", width: 40, height: 40, alt: 'Default profile picture'
             .flex-grow-1
-              h5.card-title.mb-0
-                = @user.user_name
+              h5.card-title.mb-0.fw-bold
+                - if @user.name.present?
+                  = @user.name
+                - else 
+                  = @user.user_name
               small.text-muted
                 | @
                 = @user.user_name
