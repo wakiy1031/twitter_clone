@@ -15,47 +15,50 @@
                 |  #{@user.posts.size} posts
         .profileArea
           - if @user.header_image.attached?
-            = image_tag @user.header_image, class: "header-image"
+            .header-image.exits style="height: 200px; width: 100%"
+              = image_tag @user.header_image
           - else
             .header-image style="height: 200px; background-color: #707070; background-size: cover; background-position: center;"
-            .profileDetailArea
-              .profile-image
-                - if @user.avatar_image.attached?
-                  = image_tag @user.avatar_image, class: "rounded-circle me-2", width: 40, height: 40, alt: 'Profile picture'
-                - else
-                  = image_tag 'default.webp', class: "rounded-circle me-2", width: 40, height: 40, alt: 'Default profile picture'
-              .flex-grow-1
-                h5.card-title
-                  = @user.user_name
-                small.text-muted
-                  | @
-                  = @user.user_name
-              - if @user.introduction
-                .profile-introduction.mt-3
-                  = @user.introduction
-              .profileTextArea.mt-3
-                - if @user.place
-                  span
-                    i.bi.bi-geo-alt.me-1
-                    = @user.place
-                - if @user.website
-                  span
-                    i.bi.bi-link-45deg.me-1
-                    = @user.website
-                - if @user.birthdate
-                  span
-                    i.bi.bi-balloon.me-1
-                    = @user.birthdate
+          .profileDetailArea
+            .profile-image
+              - if @user.avatar_image.attached?
+                = image_tag @user.avatar_image, class: "rounded-circle me-2", width: 40, height: 40, alt: 'Profile picture'
+              - else
+                = image_tag 'default.webp', class: "rounded-circle me-2", width: 40, height: 40, alt: 'Default profile picture'
+            .text-end.profileEditBtn
+              = link_to "編集", edit_user_path(current_user), data: { turbo: false, "turbo-method": :post }
+            .flex-grow-1
+              h5.card-title
+                = @user.user_name
+              small.text-muted
+                | @
+                = @user.user_name
+            - if @user.introduction?
+              .profile-introduction.mt-3
+                = @user.introduction
+            .profileTextArea.mt-3
+              - if @user.place?
                 span
-                  i.bi.bi-calendar3.me-2
-                  = l @user.created_at, format: :start
-              .followNumArea.mt-3
-                .num.me-3
-                  = @user.followees.size
-                  span フォロー
-                .num
-                  = @user.followers.size
-                  span フォロワー
+                  i.bi.bi-geo-alt.me-1
+                  = @user.place
+              - if @user.website?
+                span
+                  i.bi.bi-link-45deg.me-1
+                  = @user.website
+              - if @user.birthdate
+                span
+                  i.bi.bi-balloon.me-1
+                  = @user.birthdate
+              span
+                i.bi.bi-calendar3.me-2
+                = l @user.created_at, format: :start
+            .followNumArea.mt-3
+              .num.me-3
+                = @user.followees.size
+                span フォロー中
+              .num
+                = @user.followers.size
+                span フォロワー
         .nav-tabs-container
           ul.nav.nav-tabs.profile-tabs
             li
