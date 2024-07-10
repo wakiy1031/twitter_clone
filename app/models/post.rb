@@ -3,7 +3,7 @@
 class Post < ApplicationRecord
   belongs_to :user
 
-  validates :content, presence: true, length: { maximum: 140, message: "は140文字以内で入力してください" }
+  validates :content, presence: true, length: { maximum: 140, message: 'は140文字以内で入力してください' }
 
   has_many :likes, dependent: :destroy
   has_many :reposts, dependent: :destroy

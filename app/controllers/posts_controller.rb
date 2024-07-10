@@ -2,9 +2,7 @@
 
 class PostsController < ApplicationController
   before_action :set_posts
-  def index
-
-  end
+  def index; end
 
   def create
     @post = Post.new(post_params)
@@ -13,7 +11,7 @@ class PostsController < ApplicationController
       redirect_to request.referer
     else
       set_posts
-      flash.now[:alert] = "140字以内の投稿にしてください。"
+      flash.now[:alert] = '140字以内の投稿にしてください。'
       render :index, status: :unprocessable_entity
     end
   end
