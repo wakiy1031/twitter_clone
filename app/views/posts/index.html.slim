@@ -1,5 +1,4 @@
 .container-fluid
-  = render 'shared/modalform'
   .row
     = render 'shared/sidebar'
 
@@ -15,7 +14,7 @@
                 | フォロー中
 
         .tab-content
-          = render 'form', :user => @user, :post => @post
+          = render 'posts/form', :user => @user, :post => @post
           #for-you.tab-pane.fade class="#{@active_tab == 'for-you' ? 'show active' : ''}"
             - @posts.each do |post|
               = render post
@@ -23,5 +22,6 @@
           #following.tab-pane.fade class="#{@active_tab == 'following' ? 'show active' : ''}"
             - @followees_posts.each do |post|
               = render post
-            = paginate @followees_posts, :param_name => 'followees_page', :params => { :tab => 'following' }         
+            = paginate @followees_posts, :param_name => 'followees_page', :params => { :tab => 'following' }
 
+= render 'shared/modalform'

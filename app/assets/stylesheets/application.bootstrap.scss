@@ -489,7 +489,7 @@ main {
                     // ポストフォーム
                     &.postForm {
                         form {
-                            width: 100%;
+                            width: calc(100% - 40px);
                         }
                         .post-content {
                             width: 100%;

@@ -14,7 +14,9 @@ class UsersController < ApplicationController
     @active_tab = params[:tab] || 'post'
   end
 
-  def edit; end
+  def edit
+    @post = Post.new
+  end
 
   def update
     @user = current_user
