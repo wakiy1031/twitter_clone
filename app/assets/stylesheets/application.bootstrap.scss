@@ -445,8 +445,18 @@ main {
                             z-index: 0;
                         }
                     }
-                    p.card-text {
-                        font-size: 14px;
+                    .postContent {
+                        width: calc(100% - 40px);
+                        p.card-text {
+                            font-size: 14px;
+                        }
+                        .postContentImg {
+                            justify-content: space-between;
+                            img {
+                                max-width: 49%;
+                                margin-bottom: 1em;
+                            }
+                        }
                     }
                     .iconListWrap {
                         .iconList {

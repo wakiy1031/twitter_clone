@@ -7,12 +7,12 @@
             = image_tag user.avatar_image, class: "rounded-circle", width: 40, height: 40, alt: 'Profile picture'
           - else
             = image_tag 'default.webp', class: "rounded-circle", width: 40, height: 40, alt: 'Default profile picture'
-        = form_with url: posts_path, model: post, data: { turbo: false }, locale: true do |f|
+        = form_with url: posts_path, model: post, data: { turbo: false }, locale: true, multipart: true do |f|
           .flex-grow-1
             = f.text_area :content, class: 'post-content auto-expand', placeholder: "What is happening?!", rows: 3, style: "resize: none;"
             .d-flex.justify-content-between.align-items-center.mt-2
               .d-flex
-                = f.label :image, class: 'btn btn-link p-0 me-3' do
+                = f.label :images, class: 'btn btn-link p-0 me-3' do
                   i.bi.bi-image
-                = f.file_field :image, accept: 'image/*', class: 'd-none'
+                = f.file_field :images, multiple: true, class: 'd-none'
               = f.submit "Post", class: "postBtn"
