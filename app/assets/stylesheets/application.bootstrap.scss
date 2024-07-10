@@ -707,3 +707,91 @@ main {
 
     }
 }
+
+.modal {
+    background-color: rgba(91, 112, 131, 0.4);
+    .modal-dialog {
+        max-width: 600px;
+        .modal-content {
+            .modal-header {
+                background: #000;
+                border: none;
+                button {
+                    margin: 0;
+                    background: #000;
+                    border: none;
+                    i {
+                        display: block;
+                        color: #fff;
+                        font-size: 30px;
+                        line-height: 30px;                    
+                    }
+                }
+            }
+            .card {
+                border-radius: 0;
+                background: #000;
+                .card-body {
+                    background: #000;
+                    &.postForm {
+                        form {
+                            width: calc(100% - 40px);
+                        }
+                        .postUserImg {
+                            position: relative;
+                            width: 40px;
+                            height: 40px;
+
+                            &::before {
+                                content: '';
+                                padding-top: 100%;
+                                width: 100%;
+                                display: block;
+                            }
+                
+                            img {
+                                width: 100%;
+                                height: 100%;
+                                object-fit: cover;
+                                object-position: center;
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                background: #fff;
+                                z-index: 0;
+                            }
+                            
+                        }
+                        .post-content {
+                            width: 100%;
+                            background: #000;
+                            border: none;
+                            color: #fff;
+                            font-size: 18px;
+
+                            &:focus-visible {
+                                border-bottom: 1px solid rgb(113, 118, 123);
+                                outline: none;
+
+                            }
+
+                        }
+                        .bi-image {
+                            color: rgb(29, 155, 240);
+                        }
+                        .postBtn {
+                            border-radius: 30px;
+                            padding: 0.5em;
+                            text-align: center;
+                            width: 90%;
+                            max-width: 120px;
+                            background: rgb(29, 155, 240);
+                            color: #fff;
+                            font-weight: 700;
+                        }
+                    } 
+                }
+            }
+        }
+    }
+}
