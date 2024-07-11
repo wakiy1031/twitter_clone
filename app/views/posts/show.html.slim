@@ -1,0 +1,36 @@
+.container-fluid
+  .row
+    = render 'shared/sidebar'
+
+    main.col-7
+      .contentWrap
+        .nav-tabs-container.profile-sticky
+          .d-flex.align-items-center
+           = link_to posts_path, class: 'nav-link link-light' do
+            i.bi.bi-arrow-left-short.me-4
+           h5.fw-bold
+             | Post
+        .tab-content
+          .d-flex.align-items-start.userProfile
+            .userProfileImg.me-2
+              - if @user.avatar_image.attached?
+                = image_tag @user.avatar_image, class: "rounded-circle", width: 40, height: 40, alt: 'Profile picture'
+              - else
+                = image_tag 'default.webp', class: "rounded-circle", width: 40, height: 40, alt: 'Default profile picture'
+            .flex-grow-1
+              h5.card-title.mb-0.fw-bold
+                - if @user.name.present?
+                  = @user.name
+                - else 
+                  = @user.user_name
+              small.text-muted
+                | @
+                = @user.user_name
+          p.card-text.mt-2
+            - if @post.content?
+            span
+              = safe_join(@post.content.split("\n"), tag(:br))
+            - if @post.images.attached?
+              .d-flex.flex-wrap.postContentImg
+                - @post.images.each do |image|
+                  = image_tag image, multiple: true, class: "img-fluid"

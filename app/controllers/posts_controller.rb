@@ -4,6 +4,10 @@ class PostsController < ApplicationController
   before_action :set_posts
   def index; end
 
+  def show
+    @post = Post.find(params[:id])
+  end
+
   def create
     @post = current_user.posts.build(post_params)
 
