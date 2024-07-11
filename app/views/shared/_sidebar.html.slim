@@ -32,7 +32,7 @@
                 i.bi.bi-three-dots.me-3
                 | もっと見る
           .d-grid.gap-2
-            = button_tag "Post", type: "button", class: "postBtn btn btn-primary", data: { bs_toggle: "modal", bs_target: "#exampleModal" }
+            = link_to "Post", posts_path, data: { turbo: false }, class: "postBtn btn"
           .d-flex.align-items-start.userProfile
             .userProfileImg.me-2
               - if @user.avatar_image.attached?

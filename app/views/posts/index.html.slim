@@ -23,5 +23,3 @@
             - @followees_posts.each do |post|
               = render post
             = paginate @followees_posts, :param_name => 'followees_page', :params => { :tab => 'following' }
-
-= render 'shared/modalform'
