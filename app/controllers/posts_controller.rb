@@ -5,8 +5,8 @@ class PostsController < ApplicationController
   def index; end
 
   def create
-    @post = Post.new(post_params)
-    @post.user = current_user
+    @post = current_user.posts.build(post_params)
+
     if @post.save
       redirect_to request.referer
     else
