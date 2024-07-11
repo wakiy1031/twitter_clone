@@ -1,0 +1,18 @@
+- if user_signed_in?
+  .card.bg-dark.text-white
+    .card-body.postForm
+      .d-flex.align-items-start
+        = link_to user_path(current_user), data: { turbo: false }, class: "postUserImg me-2"
+          - if user.avatar_image.attached?
+            = image_tag user.avatar_image, class: "rounded-circle", width: 40, height: 40, alt: 'Profile picture'
+          - else
+            = image_tag 'default.webp', class: "rounded-circle", width: 40, height: 40, alt: 'Default profile picture'
+        = form_with model:[@post, @comment], data: { turbo: false }, locale: true, multipart: true do |f|
+          .flex-grow-1
+            = f.text_area :content, class: 'post-content auto-expand', placeholder: "What is happening?!", rows: 3, style: "resize: none;"
+            .d-flex.justify-content-between.align-items-center.mt-2
+              .d-flex
+                = f.label :images, class: 'btn btn-link p-0 me-3' do
+                  i.bi.bi-image
+                = f.file_field :images, multiple: true, class: 'd-none'
+              = f.submit "Post", class: "postBtn"

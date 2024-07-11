@@ -9,6 +9,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
 
     @comments = @post.comments.includes_desc
+    @comment = Comment.new
   end
 
   def create

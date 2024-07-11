@@ -37,5 +37,6 @@
           p
            = l @post.created_at, format: :post
         div
+          = render 'comments/form', :user => @user, :comment => @comment, :post => @post
           - @comments.each do |comment|
             = render comment
