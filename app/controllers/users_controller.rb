@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @post = Post.new
     @posts = @user.posts.includes_desc.page(params[:posts_page]).per(10)
     @like_posts = @user.like_posts.includes_desc.page(params[:like_page]).per(10)
     @repost_posts = @user.repost_posts.includes_desc.page(params[:repost_page]).per(10)
@@ -13,7 +14,9 @@ class UsersController < ApplicationController
     @active_tab = params[:tab] || 'post'
   end
 
-  def edit; end
+  def edit
+    @post = Post.new
+  end
 
   def update
     @user = current_user
