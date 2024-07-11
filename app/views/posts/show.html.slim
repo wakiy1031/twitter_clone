@@ -36,6 +36,7 @@
                   = image_tag image, multiple: true, class: "img-fluid"
           p
            = l @post.created_at, format: :post
+          = render 'post_state', :user => @user, :comment => @comment, :post => @post
         div
           = render 'comments/form', :user => @user, :comment => @comment, :post => @post
           - @comments.each do |comment|
