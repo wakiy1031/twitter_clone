@@ -1,11 +1,14 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
+  before_action :set_user
   before_action :set_posts
   def index; end
 
   def show
     @post = Post.find(params[:id])
+
+    @comments = @post.comments.includes_desc
   end
 
   def create
@@ -22,9 +25,11 @@ class PostsController < ApplicationController
 
   private
 
-  def set_posts
+  def set_user
     @user = user_signed_in? ? current_user : User.new
+  end
 
+  def set_posts
     @post = Post.new
     @posts = Post.includes_desc.page(params[:posts_page]).per(10)
     @followees_posts = Post.includes_desc

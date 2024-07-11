@@ -1,0 +1,46 @@
+  .card.mb-3
+    .card-body
+      .d-flex.align-items-start
+        .postUserImg.me-2
+          - if comment.user.avatar_image.attached?
+            = image_tag comment.user.avatar_image, class: "rounded-circle", width: 40, height: 40, alt: 'Profile picture'
+          - else
+            = image_tag 'default.webp', class: "rounded-circle", width: 40, height: 40, alt: 'Default profile picture'
+        .flex-grow-1.postContent
+          .d-flex.justify-content-between.align-items-center
+            .d-flex.align-items-center
+              h5.card-title.mb-0
+                - if comment.user.name.present?
+                  = comment.user.name
+                - else 
+                  = comment.user.user_name
+              small.text-muted.ms-2
+                  | @
+                  = comment.user.user_name
+                  |  ・ 
+                  = time_ago_in_words(comment.created_at)+ "前"
+          p.card-text.mt-2
+            - if comment.content?
+            span
+              = safe_join(comment.content.split("\n"), tag(:br))
+            - if comment.images.attached?
+              .d-flex.flex-wrap.postContentImg
+                - comment.images.each do |image|
+                  = image_tag image, multiple: true, class: "img-fluid"
+    /   .d-flex.justify-content-between.align-items-center.mt-3.iconListWrap
+    /     .d-flex.justify-content-between.align-items-center.iconList
+    /       button.btn.btn-sm
+    /         i.bi.bi-chat.me-1
+    /         span
+    /           = comment.comments.size
+    /       button.btn.btn-sm.repost class=('active' if post.reposts.size > 0)
+    /         i.bi.bi-repeat.me-1
+    /         span
+    /           = comment.reposts.size
+    /       button.btn.btn-sm.like class=('active' if post.likes.size > 0)
+    /         i.bi.bi-heart-fill.me-1
+    /         span
+    /           = comment.likes.size
+    /         span.ms-1
+    /       button.btn.btn-sm
+    /         i.bi.bi-bookmark

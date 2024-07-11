@@ -36,3 +36,6 @@
                   = image_tag image, multiple: true, class: "img-fluid"
           p
            = l @post.created_at, format: :post
+        div
+          - @comments.each do |comment|
+            = render comment
