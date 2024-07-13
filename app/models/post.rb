@@ -15,7 +15,7 @@ class Post < ApplicationRecord
 
   has_many_attached :images
 
-  scope :includes_desc, -> { includes(:user, :likes).order(created_at: :desc) }
+  scope :includes_desc, -> { includes(:user, :likes, :reposts).order(created_at: :desc) }
 
   def reposted_by?(user)
     repost_users.include?(user)

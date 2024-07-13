@@ -787,6 +787,42 @@ main {
                     font-size: 14px;
                 }
             }
+            &.repost {
+                a {
+                    &.active {
+                        i {
+                            color: rgb(0, 186, 124);
+                        }
+                        span {
+                            color: rgb(0, 186, 124);
+                        }
+                    }
+                    &:hover {
+                        i {
+                            color: rgb(0, 186, 124);
+                            position: relative;
+                            &::after {
+                                content: '';
+                                position: absolute;
+                                display: block;
+                                background: rgba(0, 186, 124, 0.3);
+                                width: 30px;
+                                height: 30px;
+                                left: 50%;
+                                top: 50%;
+                                border-radius: 50%;
+                                transform: translate(-50%, -50%);
+                                z-index: 0;
+                            }
+                            
+                        }
+                        span {
+                            color: rgb(0, 186, 124);
+                        }
+                    }
+                }
+                
+            }
             &.like {
                 a {
                     &.active {
