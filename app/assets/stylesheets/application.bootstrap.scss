@@ -471,6 +471,35 @@ main {
             &.postDetail {
                 padding: 16px;
 
+                .userProfile {
+                    h5 {
+                        font-size: 16px;
+                    }
+                    .userProfileImg {
+                        width: 40px;
+                        height: 40px;
+                        position: relative;
+                        &::before {
+                            content: '';
+                            padding-top: 100%;
+                            width: 100%;
+                            display: block;
+                        }
+            
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            object-position: center;
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            background: #fff;
+                            z-index: 0;
+                        }
+                    }
+                }
+
                 .iconListWrap {
                     border-top: 1px solid rgb(113, 118, 123);
                     padding-top: 1em;
