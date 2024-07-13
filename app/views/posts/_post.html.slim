@@ -28,28 +28,4 @@
               .d-flex.flex-wrap.postContentImg
                 - post.images.each do |image|
                   = image_tag image, multiple: true, class: "img-fluid"
-    .d-flex.justify-content-between.align-items-center.mt-3.iconListWrap
-      .d-flex.justify-content-between.align-items-center.iconList
-        button.btn.btn-sm
-          i.bi.bi-chat.me-1
-          span
-            = post.comments.size
-        button.btn.btn-sm.repost class=('active' if post.reposts.size > 0)
-          i.bi.bi-repeat.me-1
-          span
-            = post.reposts.size
-        div
-          - if post.liked_by?(current_user)
-            = link_to post_likes_path(post.id), data: { "turbo-method": :delete }
-              i.bi.bi-heart-fill.me-1
-              span
-                = post.likes.size
-          - else 
-            = link_to post_likes_path(post.id), data: { "turbo-method": :post }
-              i.fs-6.bi-heart.mx-2
-              - if !post.likes.size.zero?
-              span
-                = post.likes.size          
-          span.ms-1
-        button.btn.btn-sm
-          i.bi.bi-bookmark
+    = render 'posts/post_state', post: post

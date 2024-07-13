@@ -1,3 +1,4 @@
+    - if user_signed_in? 
       .d-flex.justify-content-between.align-items-center.mt-3.iconListWrap
         .d-flex.justify-content-between.align-items-center.iconList
           button.btn.btn-sm
@@ -9,17 +10,17 @@
             span
               = post.reposts.size
           div
-            - if @post.liked_by?(current_user)
-              = link_to post_likes_path(@post.id), data: { "turbo-method": :delete }
+            - if post.liked_by?(current_user)
+              = link_to post_likes_path(post.id), data: { "turbo-method": :delete }
                 i.bi.bi-heart-fill.me-1
                 span
-                  = @post.likes.size
+                  = post.likes.size
             - else 
-              = link_to post_likes_path(@post.id), data: { "turbo-method": :post }
+              = link_to post_likes_path(post.id), data: { "turbo-method": :post }
                 i.fs-6.bi-heart.mx-2
-                - if !@post.likes.size.zero?
+                - if !post.likes.size.zero?
                 span
-                  = @post.likes.size          
+                  = post.likes.size          
             span.ms-1
           button.btn.btn-sm
             i.bi.bi-bookmark
