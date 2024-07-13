@@ -1,3 +1,4 @@
+    - if user_signed_in? 
       .d-flex.justify-content-between.align-items-center.mt-3.iconListWrap
         .d-flex.justify-content-between.align-items-center.iconList
           button.btn.btn-sm
@@ -8,10 +9,18 @@
             i.bi.bi-repeat.me-1
             span
               = post.reposts.size
-          button.btn.btn-sm.like class=('active' if post.likes.size > 0)
-            i.bi.bi-heart-fill.me-1
-            span
-              = post.likes.size
+          .iconBtn.like
+            - if post.liked_by?(current_user)
+              = link_to post_likes_path(post.id), data: { "turbo-method": :delete }, class: "active"
+                i.bi.bi-heart-fill.me-1
+                span
+                  = post.likes.size
+            - else 
+              = link_to post_likes_path(post.id), data: { "turbo-method": :post }
+                i.b1.bi-heart.me-1
+                - if !post.likes.size.zero?
+                span
+                  = post.likes.size       
             span.ms-1
           button.btn.btn-sm
             i.bi.bi-bookmark

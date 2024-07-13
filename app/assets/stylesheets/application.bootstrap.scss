@@ -471,6 +471,35 @@ main {
             &.postDetail {
                 padding: 16px;
 
+                .userProfile {
+                    h5 {
+                        font-size: 16px;
+                    }
+                    .userProfileImg {
+                        width: 40px;
+                        height: 40px;
+                        position: relative;
+                        &::before {
+                            content: '';
+                            padding-top: 100%;
+                            width: 100%;
+                            display: block;
+                        }
+            
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            object-position: center;
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            background: #fff;
+                            z-index: 0;
+                        }
+                    }
+                }
+
                 .iconListWrap {
                     border-top: 1px solid rgb(113, 118, 123);
                     padding-top: 1em;
@@ -745,6 +774,54 @@ main {
                         color: rgb(249, 24, 128);
                     }
                 }
+            }
+        }
+        .iconBtn {
+            a {
+                color: rgb(113, 118, 123);
+                i {
+                    color: rgb(113, 118, 123);
+                    vertical-align: middle;
+                }
+                span {
+                    font-size: 14px;
+                }
+            }
+            &.like {
+                a {
+                    &.active {
+                        i {
+                            color: rgb(249, 24, 128);
+                        }
+                        span {
+                            color: rgb(249, 24, 128);
+                        }
+                    }
+                    &:hover {
+                        i {
+                            color: rgb(249, 24, 128);
+                            position: relative;
+                            &::after {
+                                content: '';
+                                position: absolute;
+                                display: block;
+                                background: rgba(249, 24, 128, 0.3);
+                                width: 30px;
+                                height: 30px;
+                                left: 50%;
+                                top: 50%;
+                                border-radius: 50%;
+                                transform: translate(-50%, -50%);
+                                z-index: 0;
+                            }
+                            
+                        }
+                        span {
+                            color: rgb(249, 24, 128);
+                        }
+                    }
+                }
+                
             }
         }
     }
