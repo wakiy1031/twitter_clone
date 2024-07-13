@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   }
   resources :users, only: %i[show edit update]
   resources :posts, only: %i[index show create] do
-    resources :comments, only: [:create]
+    resources :comments, only: %i[create]
+    resource :likes, only: %i[create destroy]
   end
 
   root 'posts#index'
