@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RepostsController < ApplicationController
   def create
     @post_repost = current_user.reposts.build(post_id: params[:post_id])
