@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :posts, only: %i[index show create] do
     resources :comments, only: %i[create]
     resource :likes, only: %i[create destroy]
+    resource :reposts, only: %i[create destroy]
   end
 
   root 'posts#index'

@@ -5,10 +5,18 @@
             i.bi.bi-chat.me-1
             span
               = post.comments.size
-          button.btn.btn-sm.repost class=('active' if post.reposts.size > 0)
-            i.bi.bi-repeat.me-1
-            span
-              = post.reposts.size
+          .iconBtn.repost
+            - if post.reposted_by?(current_user)
+              = link_to post_reposts_path(post.id), data: { "turbo-method": :delete }, class: "active"
+                i.bi.bi-repeat.me-1
+                span
+                  = post.reposts.size
+            - else 
+              = link_to post_reposts_path(post.id), data: { "turbo-method": :post }
+                i.bi.bi-repeat.me-1
+                - if !post.reposts.size.zero?
+                span
+                  = post.reposts.size
           .iconBtn.like
             - if post.liked_by?(current_user)
               = link_to post_likes_path(post.id), data: { "turbo-method": :delete }, class: "active"
