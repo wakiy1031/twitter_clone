@@ -57,12 +57,14 @@
               i.bi.bi-calendar3.me-2
               = l @user.created_at, format: :start
             .followNumArea.mt-3
-              .num.me-3
-                = @user.followees.size
-                span フォロー中
-              .num
-                = @user.followers.size
-                span フォロワー
+              = link_to follow_list_user_path(@user, tab: 'followees') do
+                .num.me-3
+                  = @user.followees.size
+                  span フォロー中
+              = link_to follow_list_user_path(@user, tab: 'followers') do
+                .num
+                  = @user.followers.size
+                  span フォロワー
         .nav-tabs-container
           ul.nav.nav-tabs.profile-tabs
             li

@@ -27,6 +27,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def follow_list
+    @active_tab = params[:tab] || 'followees'
+    @followees = @user.followees.page(params[:followees_page]).per(10)
+    @followers = @user.followers.page(params[:followers_page]).per(10)
+  end
+
   private
 
   def user_params

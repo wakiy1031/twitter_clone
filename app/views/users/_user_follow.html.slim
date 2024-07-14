@@ -1,0 +1,15 @@
+.user-follow.d-flex.align-items-center.justify-content-between.py-3
+  .d-flex.align-items-center
+    .userProfileImg.me-3
+      - if user.avatar_image.attached?
+        = image_tag user.avatar_image, class: "rounded-circle", width: 50, height: 50, alt: 'Profile picture'
+      - else
+        = image_tag 'default.webp', class: "rounded-circle", width: 50, height: 50, alt: 'Default profile picture'
+    .user-info
+      h6.mb-0 = user.name
+      small.text-muted = "@#{user.user_name}"
+  - if current_user != user
+    - if current_user.following?(user)
+      = button_to "フォロー解除", user_follow_path(user), method: :delete, class: "btn btn-sm btn-outline-primary", form: { data: { turbo: false } }
+    - else
+      = button_to "フォローする", user_follows_path(user), method: :post, class: "btn btn-sm btn-primary", form: { data: { turbo: false } }

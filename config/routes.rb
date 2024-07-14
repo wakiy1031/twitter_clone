@@ -9,6 +9,10 @@ Rails.application.routes.draw do
   }
   resources :users, only: %i[show edit update] do
     resources :follows, only: %i[create destroy]
+
+    member do
+      get :follow_list
+    end
   end
   resources :posts, only: %i[index show create] do
     resources :comments, only: %i[create]
