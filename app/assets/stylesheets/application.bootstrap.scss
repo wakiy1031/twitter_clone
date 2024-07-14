@@ -863,6 +863,54 @@ main {
     }
 }
 
+.dropdown {
+    #dropdownMenuLink {
+        color: rgb(113, 118, 123);
+        &:hover {
+            i {
+                color: rgb(29, 155, 240);
+                position: relative;
+                &::after {
+                    content: '';
+                    position: absolute;
+                    display: block;
+                    background: rgba(29, 155, 240, 0.3);
+                    width: 30px;
+                    height: 30px;
+                    left: 50%;
+                    top: 50%;
+                    border-radius: 50%;
+                    transform: translate(-50%, -50%);
+                    z-index: 0;
+                }
+                
+            }
+        }
+    }
+    ul.dropdown-menu {
+        background: #000;
+        padding: 0;
+        li {
+            a {
+                box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 15px, rgba(255, 255, 255, 0.15) 0px 0px 3px 1px;
+                border-radius: .375rem;
+                color: #fff;
+                display: block;
+                padding: .75em .5em;
+                font-size: 16px;
+                i {
+                    color: #fff;
+                }
+            }
+            &:hover {
+                a {
+                    background: rgba(113, 118, 123, 0.3);
+                }
+            }
+        }
+    }
+}
+
 // .modal {
 //     background-color: rgba(91, 112, 131, 0.4);
 //     .modal-dialog {
