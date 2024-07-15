@@ -25,9 +25,9 @@
           #followees.tab-pane.fade class="#{@active_tab == 'followees' ? 'show active' : ''}"
             - @followees.each do |user|
               = render 'user_follow', user: user
-            = paginate @followees, param_name: 'followees_page'
+            = paginate @followees, :param_name => 'followees_page'
 
           #followers.tab-pane.fade class="#{@active_tab == 'followers' ? 'show active' : ''}"
             - @followers.each do |user|
               = render 'user_follow', user: user
-            = paginate @followers, param_name: 'followers_page'
+            = paginate @followers, :param_name => 'followers_page'
