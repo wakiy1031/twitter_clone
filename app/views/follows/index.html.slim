@@ -1,0 +1,33 @@
+.container-fluid
+  .row
+    = render 'shared/sidebar'
+
+    main.col-7
+      .contentWrap
+        .position-sticky.profile-sticky
+          .d-flex.align-items-center
+            = link_to user_path(@user), class: 'nav-link link-light' do
+              i.bi.bi-arrow-left-short.me-4
+            .name-content
+              h5.fw-bold
+                = @user.name
+              small
+                | #{@user.followees.size} フォロー中 / #{@user.followers.size} フォロワー
+
+        .nav-tabs-container
+          ul.nav.nav-tabs
+            li
+              = link_to "フォロー中", user_follows_path(@user, tab: 'followees'), class: "#{@active_tab == 'followees' ? 'active' : ''}"
+            li
+              = link_to "フォロワー", user_follows_path(@user, tab: 'followers'), class: "#{@active_tab == 'followers' ? 'active' : ''}"
+
+        .tab-content
+          #followees.tab-pane.fade class="#{@active_tab == 'followees' ? 'show active' : ''}"
+            - @followees.each do |user|
+              = render 'user_follow', user: user
+            = paginate @followees, :param_name => 'followees_page'
+
+          #followers.tab-pane.fade class="#{@active_tab == 'followers' ? 'show active' : ''}"
+            - @followers.each do |user|
+              = render 'user_follow', user: user
+            = paginate @followers, :param_name => 'followers_page'

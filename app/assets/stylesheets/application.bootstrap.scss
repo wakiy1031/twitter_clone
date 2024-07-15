@@ -423,6 +423,7 @@ main {
                 border-radius: 0;
                 .card-body {
                     background: #000;
+                    position: relative;
                     h5 {
                         font-size: 16px;
                         font-weight: 700;
@@ -465,6 +466,11 @@ main {
                                 margin-bottom: 1em;
                             }
                         }
+                    }
+                    .dropdown {
+                        position: absolute;
+                        right: .5em;
+                        top: 1em;
                     }
                 }
             }
@@ -859,6 +865,132 @@ main {
                 }
                 
             }
+        }
+    }
+}
+
+.dropdown {
+    #dropdownMenuLink {
+        color: rgb(113, 118, 123);
+        &:hover {
+            i {
+                color: rgb(29, 155, 240);
+                position: relative;
+                &::after {
+                    content: '';
+                    position: absolute;
+                    display: block;
+                    background: rgba(29, 155, 240, 0.3);
+                    width: 30px;
+                    height: 30px;
+                    left: 50%;
+                    top: 50%;
+                    border-radius: 50%;
+                    transform: translate(-50%, -50%);
+                    z-index: 0;
+                }
+                
+            }
+        }
+    }
+    ul.dropdown-menu {
+        background: #000;
+        padding: 0;
+        li {
+            a {
+                box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 15px, rgba(255, 255, 255, 0.15) 0px 0px 3px 1px;
+                border-radius: .375rem;
+                color: #fff;
+                display: block;
+                padding: .75em .5em;
+                font-size: 16px;
+                i {
+                    color: #fff;
+                }
+                &.destroy {
+                    color: rgb(244, 33, 46);
+                    i {
+                        color: rgb(244, 33, 46);
+                    }
+                }
+            }
+            &:hover {
+                a {
+                    background: rgba(113, 118, 123, 0.3);
+                }
+            }
+        }
+    }
+}
+
+.userFollowList {
+    width: 75%;
+    margin: 0 auto;
+    .userProfileImg {
+        width: 40px;
+        height: 40px;
+        position: relative;
+        &::before {
+            content: '';
+            padding-top: 100%;
+            width: 100%;
+            display: block;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: #fff;
+            z-index: 0;
+        }
+    }
+    .user-info {
+        h5 {
+            font-size: 15px;
+            font-weight: 700;
+        }
+    }
+    .dropdown {
+        a {
+            &.followeeLink {
+                border-radius: 30px;
+                text-align: center;
+                border: 1px solid rgb(113, 118, 123);
+                display: block;
+                font-weight: 700;
+                font-size: 14px;
+                height: 30px;
+                line-height: 30px;
+            }
+        }
+        ul {
+            li {
+                a {
+                    color: rgb(244, 33, 46);
+                    i {
+                        color: rgb(244, 33, 46);
+                    }
+                }
+            }
+        }
+    }
+    .followBtn {
+        width: 120px;
+        
+        &.followerLink {
+            text-align: center;
+            background: #fff;
+            color: #000;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 14px;
+            height: 30px;
+            line-height: 30px;
         }
     }
 }
