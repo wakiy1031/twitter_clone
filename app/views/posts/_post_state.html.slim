@@ -29,6 +29,15 @@
                 - if !post.likes.size.zero?
                 span
                   = post.likes.size       
-            span.ms-1
-          button.btn.btn-sm
-            i.bi.bi-bookmark
+          .iconBtn.bookmark
+            - if post.bookmarked_by?(current_user)
+              = link_to post_bookmarks_path(post.id), data: { "turbo-method": :delete }, class: "active"
+                i.bi.bi-bookmark-fill.me-1
+                span
+                  = post.bookmarks.size
+            - else 
+              = link_to post_bookmarks_path(post.id), data: { "turbo-method": :post }
+                i.bi.bi-bookmark.me-1
+                - if !post.bookmarks.size.zero?
+                span
+                  = post.bookmarks.size  
