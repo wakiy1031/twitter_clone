@@ -16,10 +16,10 @@
 
         .nav-tabs-container
           ul.nav.nav-tabs
-            li.nav-item
-              = link_to "フォロー中", follow_list_user_path(@user, tab: 'followees'), class: "nav-link #{@active_tab == 'followees' ? 'active' : ''}"
-            li.nav-item
-              = link_to "フォロワー", follow_list_user_path(@user, tab: 'followers'), class: "nav-link #{@active_tab == 'followers' ? 'active' : ''}"
+            li
+              = link_to "フォロー中", follow_list_user_path(@user, tab: 'followees'), class: "#{@active_tab == 'followees' ? 'active' : ''}"
+            li
+              = link_to "フォロワー", follow_list_user_path(@user, tab: 'followers'), class: "#{@active_tab == 'followers' ? 'active' : ''}"
 
         .tab-content
           #followees.tab-pane.fade class="#{@active_tab == 'followees' ? 'show active' : ''}"
