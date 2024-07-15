@@ -28,4 +28,19 @@
               .d-flex.flex-wrap.postContentImg
                 - post.images.each do |image|
                   = image_tag image, multiple: true, class: "img-fluid"
+    - if current_user != post.user
+      .dropdown.mx-3
+        a[href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"]
+          i.bi.bi-three-dots
+        ul.dropdown-menu[aria-labelledby="dropdownMenuLink"]
+          - if current_user.following?(post.user)
+            li
+              = link_to user_follow_path(post.user, current_user), data: { "turbo-method": :delete }, class: "dropdown-item destroy"
+                i.bi-person-dash.me-2
+                = "@#{post.user.user_name}さんのフォローを解除"
+          - else
+            li
+              = link_to user_follows_path(post.user), data: { "turbo-method": :post }, class: "dropdown-item"
+                i.bi-person-add.me-2
+                = "@#{post.user.user_name}さんをフォロー"
     = render 'posts/post_state', post: post

@@ -423,6 +423,7 @@ main {
                 border-radius: 0;
                 .card-body {
                     background: #000;
+                    position: relative;
                     h5 {
                         font-size: 16px;
                         font-weight: 700;
@@ -465,6 +466,11 @@ main {
                                 margin-bottom: 1em;
                             }
                         }
+                    }
+                    .dropdown {
+                        position: absolute;
+                        right: .5em;
+                        top: 1em;
                     }
                 }
             }
@@ -900,6 +906,12 @@ main {
                 font-size: 16px;
                 i {
                     color: #fff;
+                }
+                &.destroy {
+                    color: rgb(244, 33, 46);
+                    i {
+                        color: rgb(244, 33, 46);
+                    }
                 }
             }
             &:hover {

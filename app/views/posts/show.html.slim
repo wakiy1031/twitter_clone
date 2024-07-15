@@ -32,9 +32,9 @@
                 a[href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"]
                   i.bi.bi-three-dots
                 ul.dropdown-menu[aria-labelledby="dropdownMenuLink"]
-                  - if @user.following?(@post.user)
+                  - if current_user.following?(@post.user)
                     li
-                      = link_to user_follow_path(@post.user), data: { "turbo-method": :delete }, class: "dropdown-item"
+                      = link_to user_follow_path(@post.user), data: { "turbo-method": :delete }, class: "dropdown-item destroy"
                         i.bi-person-dash.me-2
                         = "@#{@post.user.user_name}さんのフォローを解除"
                   - elsif current_user != @post.user
