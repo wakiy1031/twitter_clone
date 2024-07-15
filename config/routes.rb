@@ -8,11 +8,7 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
   resources :users, only: %i[show edit update] do
-    resources :follows, only: %i[create destroy]
-
-    member do
-      get :follow_list
-    end
+    resources :follows, only: %i[index create destroy]
   end
   resources :posts, only: %i[index show create] do
     resources :comments, only: %i[create]

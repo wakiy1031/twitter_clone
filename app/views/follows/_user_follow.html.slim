@@ -21,7 +21,7 @@
           | フォロー中
         ul.dropdown-menu[aria-labelledby="dropdownMenuLink"]
           li
-            = link_to user_follow_path(user), data: { "turbo-method": :delete }, class: "dropdown-item"
+            = link_to user_follow_path(user, current_user), data: { "turbo-method": :delete }, class: "dropdown-item"
               i.bi-person-dash.me-2
               = "@#{user.user_name}さんのフォローを解除"
     - else
