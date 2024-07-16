@@ -1,5 +1,5 @@
 .container-fluid
-  .row
+  .row.heightFull
     = render 'shared/sidebar'
 
     main.col-7
@@ -58,3 +58,4 @@
           = render 'comments/form', :user => @user, :comment => @comment, :post => @post
           - @comments.each do |comment|
             = render comment
+    = render 'shared/searchbar'

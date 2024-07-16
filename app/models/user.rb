@@ -35,10 +35,12 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :reposts, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
 
   has_many :like_posts, through: :likes, source: :post
   has_many :repost_posts, through: :reposts, source: :post
   has_many :comment_posts, through: :comments, source: :post
+  has_many :bookmark_posts, through: :bookmarks, source: :post
 
   validates :phone, presence: true, unless: :provider_github?
   validates :birthdate, presence: true, unless: :provider_github?

@@ -1,5 +1,5 @@
 .container-fluid
-  .row
+  .row.heightFull
     = render 'shared/sidebar'
 
     main.col-7
@@ -34,4 +34,5 @@
             .text-center.row
               = link_to "戻る", user_path(current_user), data: { turbo: false }, class: "col btn btn-outline-dark mx-1 fw-bold"
               = f.submit '更新する', class: "col updateBtn"
+    = render 'shared/searchbar'
                       
