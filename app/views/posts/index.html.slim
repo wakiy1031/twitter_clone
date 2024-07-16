@@ -1,5 +1,5 @@
 .container-fluid
-  .row
+  .row.heightFull
     = render 'shared/sidebar'
 
     main.col-7
@@ -23,3 +23,4 @@
             - @followees_posts.each do |post|
               = render post
             = paginate @followees_posts, :param_name => 'followees_page', :params => { :tab => 'following' }
+    = render 'shared/searchbar'

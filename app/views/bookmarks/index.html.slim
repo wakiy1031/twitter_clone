@@ -1,5 +1,5 @@
 .container-fluid
-  .row
+  .row.heightFull
     = render 'shared/sidebar'
 
     main.col-7
@@ -18,3 +18,4 @@
           - else 
             .fw-bold.mx-3.mt-3
               | ブックマークされたPostはありません。
+    = render 'shared/searchbar'

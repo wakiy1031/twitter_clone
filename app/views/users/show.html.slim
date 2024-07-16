@@ -1,5 +1,5 @@
 .container-fluid
-  .row
+  .row.heightFull
     = render 'shared/sidebar'
 
     main.col-7
@@ -96,5 +96,6 @@
             - @comment_posts.each do |post|
               = render post
             = paginate @comment_posts, :param_name => 'comment_page', :params => { :tab => 'comment' }
+    = render 'shared/searchbar'
 
 
