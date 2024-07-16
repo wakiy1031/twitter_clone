@@ -17,5 +17,7 @@ Rails.application.routes.draw do
     resource :bookmarks, only: %i[create destroy]
   end
 
+  resources :bookmarks, only: %i[index]
+
   root 'posts#index'
 end

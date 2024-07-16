@@ -4,7 +4,7 @@
         nav.sidebar.d-flex.flex-column
           ul.nav.nav-pills.flex-column.mb-auto
             li
-              = link_to posts_path, class: 'nav-link link-light' do
+              = link_to posts_path, data: { turbo: false }, class: 'nav-link link-light' do
                 i.bi.bi-house-door.me-3
                 | ホーム
             li
@@ -20,11 +20,11 @@
                 i.bi.bi-envelope.me-3
                 | メッセージ
             li
-              a.nav-link.link-light href="#"
+              = link_to bookmarks_path, class: 'nav-link link-light' do
                 i.bi.bi-bookmark.me-3
                 | ブックマーク
             li
-              = link_to user_path(current_user), class: 'nav-link link-light' do
+              = link_to user_path(current_user), data: { turbo: false }, class: 'nav-link link-light' do
                 i.bi.bi-person.me-3
                 | プロフィール
             li

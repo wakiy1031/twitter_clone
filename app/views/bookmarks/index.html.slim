@@ -1,0 +1,12 @@
+.container-fluid
+  .row
+    = render 'shared/sidebar'
+
+    main.col-7
+      .contentWrap
+        .position-sticky.profile-sticky
+          | ブックマーク
+        .tab-content
+          - @bookmark_posts.each do |post|
+            = render post, :user => @user
+          = paginate @bookmark_posts, :param_name => 'bookmark_page'
