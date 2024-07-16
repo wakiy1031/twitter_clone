@@ -5,8 +5,16 @@
     main.col-7
       .contentWrap
         .position-sticky.profile-sticky
-          | ブックマーク
+          .d-flex.align-items-center
+           = link_to posts_path, class: 'nav-link link-light' do
+            i.bi.bi-arrow-left-short.me-4
+           h5.fw-bold
+             | ブックマーク
         .tab-content
-          - @bookmark_posts.each do |post|
-            = render post, :user => @user
-          = paginate @bookmark_posts, :param_name => 'bookmark_page'
+          - if @bookmark_posts.present?
+            - @bookmark_posts.each do |post|
+              = render post, :user => @user
+            = paginate @bookmark_posts, :param_name => 'bookmark_page'
+          - else 
+            .fw-bold.mx-3.mt-3
+              | ブックマークされたPostはありません。
