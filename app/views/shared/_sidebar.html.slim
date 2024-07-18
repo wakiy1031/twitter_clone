@@ -16,7 +16,7 @@
                 i.bi.bi-bell.me-3
                 | 通知
             li
-              a.nav-link.link-light href="#"
+              = link_to rooms_path, data: { turbo: false }, class: 'nav-link link-light' do
                 i.bi.bi-envelope.me-3
                 | メッセージ
             li

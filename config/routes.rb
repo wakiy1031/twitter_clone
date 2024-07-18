@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   }
   resources :users, only: %i[show edit update] do
     resources :follows, only: %i[index create destroy]
+    resources :rooms, only: %i[create]
   end
   resources :posts, only: %i[index show create] do
     resources :comments, only: %i[create]
@@ -18,6 +19,8 @@ Rails.application.routes.draw do
   end
 
   resources :bookmarks, only: %i[index]
+
+  resources :rooms, only: %i[index show]
 
   root 'posts#index'
 end
