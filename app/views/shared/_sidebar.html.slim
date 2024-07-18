@@ -20,7 +20,7 @@
                 i.bi.bi-envelope.me-3
                 | メッセージ
             li
-              = link_to bookmarks_path, class: 'nav-link link-light' do
+              = link_to bookmarks_path, data: { turbo: false }, class: 'nav-link link-light' do
                 i.bi.bi-bookmark.me-3
                 | ブックマーク
             li
@@ -35,16 +35,16 @@
             = link_to "Post", posts_path, data: { turbo: false }, class: "postBtn btn"
           .d-flex.align-items-start.userProfile
             .userProfileImg.me-2
-              - if @user.avatar_image.attached?
-                = image_tag @user.avatar_image, class: "rounded-circle", width: 40, height: 40, alt: 'Profile picture'
+              - if current_user.avatar_image.attached?
+                = image_tag current_user.avatar_image, class: "rounded-circle", width: 40, height: 40, alt: 'Profile picture'
               - else
                 = image_tag 'default.webp', class: "rounded-circle", width: 40, height: 40, alt: 'Default profile picture'
             .flex-grow-1
               h5.card-title.mb-0.fw-bold
-                - if @user.name.present?
-                  = @user.name
+                - if current_user.name.present?
+                  = current_user.name
                 - else 
-                  = @user.user_name
+                  = current_user.user_name
               small.text-muted
                 | @
-                = @user.user_name
+                = current_user.user_name
