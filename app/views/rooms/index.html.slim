@@ -1,0 +1,16 @@
+.container-fluid
+  .row.heightFull
+    = render 'shared/sidebar'
+
+    main.col-4
+      .contentWrap
+        .position-sticky.profile-sticky
+          .d-flex.align-items-center
+           = link_to posts_path, class: 'nav-link link-light' do
+            i.bi.bi-arrow-left-short.me-4
+           h5.fw-bold
+             | メッセージ
+        .tab-content
+          - @room_data.each do |room_data|
+            = render 'room_data', room_data:
+    .col.messageDetailWrap

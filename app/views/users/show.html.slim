@@ -10,7 +10,10 @@
             i.bi.bi-arrow-left-short.me-4
            .name-content
             h5.fw-bold
+              - if @user.name.present?
                 = @user.name
+              - else 
+                = @user.user_name
             small
                 |  #{@user.posts.size} posts
         .profileArea
@@ -25,8 +28,27 @@
                 = image_tag @user.avatar_image, class: "rounded-circle me-2", width: 40, height: 40, alt: 'Profile picture'
               - else
                 = image_tag 'default.webp', class: "rounded-circle me-2", width: 40, height: 40, alt: 'Default profile picture'
-            .text-end.profileEditBtn
-              = link_to "編集", edit_user_path(current_user), data: { turbo: false, "turbo-method": :post }
+            .profileBtnArea.d-flex
+              - if @user == current_user
+                .text-end.profileEditBtn
+                  = link_to "編集", edit_user_path(current_user), data: { turbo: false, "turbo-method": :post }
+              - else
+                .messageBtn.mx-3
+                  = link_to user_rooms_path(@user), data: { "turbo-method": :post }
+                    i.bi.bi-envelope
+                - if current_user.following?(@user)
+                  .dropdown.text-end.profileEditBtn.followedBtn
+                    a[href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"]
+                      | フォロー中
+                    ul.dropdown-menu[aria-labelledby="dropdownMenuLink"]
+                      li
+                        = link_to user_follow_path(@user, current_user), data: { "turbo-method": :delete }, class: "dropdown-item"
+                          i.bi-person-dash.me-2
+                          = "@#{@user.user_name}さんをフォローを解除"
+                - else
+                  .text-end.profileEditBtn.followeeBtn
+                    = link_to "フォローする", user_follows_path(@user), data: { "turbo-method": :post }
+            
             .flex-grow-1
               h5.card-title
                 - if @user.name.present?

@@ -42,6 +42,11 @@ class User < ApplicationRecord
   has_many :comment_posts, through: :comments, source: :post
   has_many :bookmark_posts, through: :bookmarks, source: :post
 
+  has_many :conversations, dependent: :destroy
+  has_many :messages, dependent: :destroy
+
+  has_many :rooms, through: :conversations
+
   validates :phone, presence: true, unless: :provider_github?
   validates :birthdate, presence: true, unless: :provider_github?
   validates :user_name, presence: true, uniqueness: true

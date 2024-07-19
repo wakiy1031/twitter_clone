@@ -1,0 +1,65 @@
+.container-fluid
+  .row.heightFull
+    = render 'shared/sidebar'
+
+    main.col-4
+      .contentWrap
+        .position-sticky.profile-sticky
+          .d-flex.align-items-center
+           = link_to posts_path, class: 'nav-link link-light' do
+            i.bi.bi-arrow-left-short.me-4
+           h5.fw-bold
+             | メッセージ
+        .tab-content
+          - @room_data.each do |room_data|
+            = render 'room_data', room_data:
+    .col.messageDetailWrap
+      .messageContent
+        .position-sticky.message-sticky
+          h5.fw-bold
+            - if @selected_room[:user]&.name.present?
+              = @selected_room[:user].name
+            - else 
+              = @selected_room[:user]&.user_name
+        .messageUserProfile
+           = link_to user_path(@selected_room[:user]), data: { turbo: false } do
+             .profileDetailHead
+               .profile-image
+                 - if @selected_room[:user]&.avatar_image.attached?
+                   = image_tag @selected_room[:user]&.avatar_image, class: "rounded-circle", width: 40, height: 40, alt: 'Profile picture'
+                 - else
+                   = image_tag 'default.webp', class: "rounded-circle", width: 40, height: 40, alt: 'Default profile picture'
+               h5.card-title.mb-0
+                 - if @selected_room[:user]&.name.present?
+                   = @selected_room[:user].name
+                 - else 
+                   = @selected_room[:user]&.user_name
+               small.text-muted
+                 | @
+                 = @selected_room[:user]&.user_name
+             .profileDetailBody.mt-3
+               - if @selected_room[:user]&.introduction?
+                .profile-introduction
+                  = @selected_room[:user]&.introduction
+                small.text-muted
+                  span
+                    = l @selected_room[:user]&.created_at, format: :start
+                    | ・
+                  span
+                    = @selected_room[:user]&.followers.size
+                    | フォロワー
+        .messagesContainer
+          - @messages.each do |message|
+            .message.mb-3 class="#{message.user == current_user ? 'sent' : 'received'}"
+              .message-content
+                = safe_join(message.content.split("\n"), tag(:br))
+              .message-timestamp.text-muted
+                = l message.created_at, format: :post
+      .messageFormWrap
+        .messageForm
+          = form_with model: [@selected_room[:room], Message.new], url: room_messages_path(@selected_room[:room]), data: { turbo: false }, local: true, class: 'message-input-form' do |f|
+            .input-group
+              = f.text_area :content, placeholder: 'メッセージを作成する', class: 'form-control message-input', rows: 1
+              .input-group-append
+                = button_tag type: 'submit', class: 'btn btn-send' do
+                  i.bi.bi-send-fill
