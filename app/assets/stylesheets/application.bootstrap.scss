@@ -630,18 +630,40 @@ main {
                     position: absolute;
                     right: 15px;
                     top: 15px;
-                    width: 90px;
+                    width: 140px;
                     height: 30px;
                     a {
                         border: 1px solid rgb(113, 118, 123);
                         border-radius: 30px;
                         display: block;
                         color: #fff;
-                        font-size: 16px;
+                        font-size: 14px;
                         line-height: 30px;
                         text-align: center;
                         text-decoration: none;
                         font-weight: 700;
+                    }
+                    &.followeeBtn {
+                        a {
+                            border: 1px solid #fff;
+                            background: #fff;
+                            color: #000;
+                        }
+                    }
+                    &.followedBtn {
+                        ul {
+                            li {
+                                a {
+                                    border-radius: 0;
+                                    border: none;
+                                    color: rgb(244, 33, 46);
+                                    i {
+                                        color: rgb(244, 33, 46);
+                                        
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
                 .profileTextArea {
