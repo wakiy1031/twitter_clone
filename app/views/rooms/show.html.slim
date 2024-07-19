@@ -14,11 +14,39 @@
           - @room_data.each do |room_data|
             = render 'room_data', room_data:
     .col.messageDetailWrap
-      - if @selected_room
-        h5.card-title.mb-0
-          - if @selected_room[:user]&.name.present?
-            = @selected_room[:user].name
-          - else 
-            = @selected_room[:user]&.user_name
-      - else
-        p ルームが選択されていません。
+      .messageUserProfile
+         = link_to user_path(@selected_room[:user]), data: { turbo: false } do
+           .profileDetailHead
+             - if @selected_room[:user]&.avatar_image.attached?
+               = image_tag @selected_room[:user]&.avatar_image, class: "rounded-circle", width: 40, height: 40, alt: 'Profile picture'
+             - else
+               = image_tag 'default.webp', class: "rounded-circle", width: 40, height: 40, alt: 'Default profile picture'
+             h5.card-title.mb-0
+               - if @selected_room[:user]&.name.present?
+                 = @selected_room[:user].name
+               - else 
+                 = @selected_room[:user]&.user_name
+             small.text-muted
+               | @
+               = @selected_room[:user]&.user_name
+           .profileDetailBody.mt-3
+             - if @selected_room[:user]&.introduction?
+              .profile-introduction
+                = @selected_room[:user]&.introduction
+              small.text-muted
+                span
+                  = l @selected_room[:user]&.created_at, format: :start
+                  | ・
+                span
+                  = @selected_room[:user]&.followers.size
+                  | フォロワー
+      .messages-container
+        - @messages.each do |message|
+          .message
+            .message-content
+              = message.content
+            .message-timestamp
+              = message.created_at.strftime("%H:%M")
+      = form_with model: [@selected_room[:room], Message.new], url: room_messages_path(@selected_room[:room]), data: { turbo: false }, local: true do |f|
+        = f.text_area :content, placeholder: 'メッセージを作成.', class: 'form-control'
+        = f.submit '送信', class: 'btn btn-primary'

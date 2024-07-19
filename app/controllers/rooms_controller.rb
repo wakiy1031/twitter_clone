@@ -9,6 +9,7 @@ class RoomsController < ApplicationController
 
   def show
     room = current_user.rooms.find(params[:id])
+    @messages = room.messages.includes(:user)
   end
 
   def create
