@@ -1,19 +1,20 @@
 .userFollowList.d-flex.align-items-center.justify-content-between.py-3
-  .d-flex.align-items-center
-    .userProfileImg.me-3
-      - if user.avatar_image.attached?
-        = image_tag user.avatar_image, class: "rounded-circle", width: 40, height: 40, alt: 'Profile picture'
-      - else
-        = image_tag 'default.webp', class: "rounded-circle", width: 40, height: 40, alt: 'Default profile picture'
-    .user-info
-      h5.card-title.mb-0.fw-bold
-        - if user.name.present?
-          = user.name
-        - else 
+  = link_to user_path(user), data: { turbo: false }
+    .d-flex.align-items-center
+      .userProfileImg.me-3
+        - if user.avatar_image.attached?
+          = image_tag user.avatar_image, class: "rounded-circle", width: 40, height: 40, alt: 'Profile picture'
+        - else
+          = image_tag 'default.webp', class: "rounded-circle", width: 40, height: 40, alt: 'Default profile picture'
+      .user-info
+        h5.card-title.mb-0.fw-bold
+          - if user.name.present?
+            = user.name
+          - else 
+            = user.user_name
+        small.text-muted
+          | @
           = user.user_name
-      small.text-muted
-        | @
-        = user.user_name
   - if current_user != user
     - if current_user.following?(user)
       .dropdown

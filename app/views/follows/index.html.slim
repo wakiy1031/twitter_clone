@@ -10,7 +10,10 @@
               i.bi.bi-arrow-left-short.me-4
             .name-content
               h5.fw-bold
-                = @user.name
+                - if @user.name.present?
+                  = @user.name
+                - else 
+                  = @user.user_name
               small
                 | #{@user.followees.size} フォロー中 / #{@user.followers.size} フォロワー
 

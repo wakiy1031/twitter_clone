@@ -14,10 +14,11 @@
           .d-flex.justify-content-between
             .d-flex.align-items-start.userProfile
               .userProfileImg.me-2
-                - if @post.user.avatar_image.attached?
-                  = image_tag @post.user.avatar_image, class: "rounded-circle", width: 40, height: 40, alt: 'Profile picture'
-                - else
-                  = image_tag 'default.webp', class: "rounded-circle", width: 40, height: 40, alt: 'Default profile picture'
+                = link_to user_path(@post.user), data: { turbo: false }
+                  - if @post.user.avatar_image.attached?
+                    = image_tag @post.user.avatar_image, class: "rounded-circle", width: 40, height: 40, alt: 'Profile picture'
+                  - else
+                    = image_tag 'default.webp', class: "rounded-circle", width: 40, height: 40, alt: 'Default profile picture'
               .flex-grow-1
                 h5.card-title.mb-0.fw-bold
                   - if @post.user.name.present?
