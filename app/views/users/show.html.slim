@@ -28,22 +28,26 @@
                 = image_tag @user.avatar_image, class: "rounded-circle me-2", width: 40, height: 40, alt: 'Profile picture'
               - else
                 = image_tag 'default.webp', class: "rounded-circle me-2", width: 40, height: 40, alt: 'Default profile picture'
-            - if @user == current_user
-              .text-end.profileEditBtn
-                = link_to "編集", edit_user_path(current_user), data: { turbo: false, "turbo-method": :post }
-            - else
-              - if current_user.following?(@user)
-                .dropdown.text-end.profileEditBtn.followedBtn
-                  a[href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"]
-                    | フォロー中
-                  ul.dropdown-menu[aria-labelledby="dropdownMenuLink"]
-                    li
-                      = link_to user_follow_path(@user, current_user), data: { "turbo-method": :delete }, class: "dropdown-item"
-                        i.bi-person-dash.me-2
-                        = "@#{@user.user_name}さんをフォローを解除"
+            .profileBtnArea.d-flex
+              - if @user == current_user
+                .text-end.profileEditBtn
+                  = link_to "編集", edit_user_path(current_user), data: { turbo: false, "turbo-method": :post }
               - else
-                .text-end.profileEditBtn.followeeBtn
-                  = link_to "フォローする", user_follows_path(@user), data: { "turbo-method": :post }
+                .messageBtn.mx-3
+                  = link_to user_rooms_path(@user), data: { "turbo-method": :post }
+                    i.bi.bi-envelope
+                - if current_user.following?(@user)
+                  .dropdown.text-end.profileEditBtn.followedBtn
+                    a[href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"]
+                      | フォロー中
+                    ul.dropdown-menu[aria-labelledby="dropdownMenuLink"]
+                      li
+                        = link_to user_follow_path(@user, current_user), data: { "turbo-method": :delete }, class: "dropdown-item"
+                          i.bi-person-dash.me-2
+                          = "@#{@user.user_name}さんをフォローを解除"
+                - else
+                  .text-end.profileEditBtn.followeeBtn
+                    = link_to "フォローする", user_follows_path(@user), data: { "turbo-method": :post }
             
             .flex-grow-1
               h5.card-title
