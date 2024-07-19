@@ -52,7 +52,7 @@
           - @messages.each do |message|
             .message.mb-3 class="#{message.user == current_user ? 'sent' : 'received'}"
               .message-content
-                = message.content
+                = safe_join(message.content.split("\n"), tag(:br))
               .message-timestamp.text-muted
                 = l message.created_at, format: :post
       .messageFormWrap
