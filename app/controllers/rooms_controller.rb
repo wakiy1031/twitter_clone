@@ -20,8 +20,8 @@ class RoomsController < ApplicationController
       room = existing_room
     else
       room = Room.create
-      Conversation.create(user_id: current_user.id, room_id: room.id)
-      Conversation.create(user_id: other_user_id, room_id: room.id)
+      room.conversations.create(user_id: current_user.id)
+      room.conversations.create(user_id: other_user_id)
     end
 
     redirect_to "/rooms/#{room.id}"
