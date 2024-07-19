@@ -5,8 +5,7 @@ class MessagesController < ApplicationController
     if @message.save
       redirect_to request.referer
     else
-      redirect_to request.referer
-      flash.now[:alert] = 'メッセージを確認してください'
+      redirect_to request.referer, flash: { danger: 'メッセージの送信に失敗しました。' }
     end
   end
 
