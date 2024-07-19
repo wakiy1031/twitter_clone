@@ -9,4 +9,12 @@ class Comment < ApplicationRecord
   scope :includes_desc, -> { includes(:user).order(created_at: :desc) }
 
   validates :content, presence: true, length: { maximum: 140 }
+
+  after_create_commit :create_notifications
+
+  private
+
+  def create_notifications
+    Notification.create(subject: self, user: self.post.user, action_type: :comment_received)
+  end
 end
