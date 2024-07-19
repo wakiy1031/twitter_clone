@@ -4,8 +4,7 @@ class RoomsController < ApplicationController
   before_action :set_user
   before_action :set_room_data, only: %i[index show]
 
-  def index
-  end
+  def index; end
 
   def show
     room = current_user.rooms.find(params[:id])
@@ -33,7 +32,7 @@ class RoomsController < ApplicationController
   def set_room_data
     @room_data = current_user.rooms.includes(:conversations, :users).map do |room|
       {
-        room: room,
+        room:,
         user: room.users.find { |user| user.id != current_user.id }
       }
     end
