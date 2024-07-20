@@ -11,6 +11,6 @@ class Repost < ApplicationRecord
   private
 
   def create_notifications
-    Notification.create(subject: self, user: self.post.user, action_type: :post_shared)
+    Notification.create(subject: self, user: self.post.user, subject_type: 'Repost')
   end
 end

@@ -12,7 +12,7 @@
                 i.bi.bi-search.me-3
                 | 話題を検索
             li
-              a.nav-link.link-light href="#"
+              = link_to notifications_path, data: { turbo: false }, class: 'nav-link link-light' do
                 i.bi.bi-bell.me-3
                 | 通知
             li
