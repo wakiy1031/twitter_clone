@@ -1276,6 +1276,56 @@ main {
     border: none;
   }
 
+.notificationCard {
+    .card-body {
+        p.icon {
+            width: 40px;
+            i {
+                margin: 0 auto;
+                display: block;
+                font-size: 25px;
+                line-height: 25px;
+                text-align: center;
+            }
+        }
+        p.card-title {
+            font-size: 16px;
+            strong {
+                a {
+                    &:hover {
+                        border-bottom: 1px solid #fff;
+                    }
+                }
+            }
+        }
+        p.comment-name {
+            font-size: 14px;
+            margin-bottom: 0;
+            a {
+                color: rgb(29, 155, 240);
+            }
+        }
+        p.card-text {
+            a {
+                display: block;
+            }
+        }
+        &.notificationLike {
+            i {
+                color: rgb(249, 24, 128);
+            }
+            
+        }
+        &.notificationRepost {
+            i {
+                color: rgb(0, 186, 124);
+            }
+            
+        }
+    }
+}
+
+
 // .modal {
 //     background-color: rgba(91, 112, 131, 0.4);
 //     .modal-dialog {

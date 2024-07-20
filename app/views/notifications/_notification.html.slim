@@ -1,10 +1,11 @@
-.card.notificationCard.mb-3
+.card.notificationCard
   - case notification.subject_type
   - when 'Like'
     - like = notification.subject
-    .card-body
+    .card-body.notificationLike
       .d-flex.align-items-start
-        i.bi.bi-heart-fill
+        p.icon.me-2
+          i.bi.bi-heart-fill.mt-2
         .flex-grow-1.postContent
           .postUserImg.me-2
              = link_to user_path(like.user), data: { turbo: false } do
@@ -13,17 +14,16 @@
                - else
                  = image_tag 'default.webp', class: "rounded-circle", width: 40, height: 40, alt: 'Default profile picture'
 
-          p.card-title.mb-0
+          p.card-title.mt-2
             strong 
               = link_to user_path(like.user), data: { turbo: false } do
                 - if like.user.name.present?
                   = like.user.name
-                  | があなたの投稿をいいねしました
                 - else 
                   = like.user.user_name
-                  | があなたの投稿をいいねしました
+            |  があなたの投稿をいいねしました
               
-          p.card-text.mt-2
+          p.card-text.mt-2.text-muted
             = link_to post_path(like.post), data: { turbo: false} do
               - if like.post.content?
               span
@@ -34,9 +34,10 @@
                     = image_tag image, multiple: true, class: "img-fluid"
   - when 'Repost'
     - repost = notification.subject
-    .card-body
+    .card-body.notificationRepost
       .d-flex.align-items-start
-        i.bi.bi-repeat
+        p.icon.me-2
+          i.bi.bi-repeat.mt-2
         .flex-grow-1.postContent
           .postUserImg.me-2
              = link_to user_path(repost.user), data: { turbo: false } do
@@ -45,17 +46,16 @@
                - else
                  = image_tag 'default.webp', class: "rounded-circle", width: 40, height: 40, alt: 'Default profile picture'
 
-          p.card-title.mb-0
+          p.card-title.mt-2
             strong 
               = link_to user_path(repost.user), data: { turbo: false } do
                 - if repost.user.name.present?
                   = repost.user.name
-                  | があなたの投稿をリツイートしました
                 - else 
                   = repost.user.user_name
-                  | があなたの投稿をリツイートしました
+            |  があなたの投稿をリツイートしました
               
-          p.card-text.mt-2
+          p.card-text.mt-2.text-muted
             = link_to post_path(repost.post), data: { turbo: false} do
               - if repost.post.content?
               span
@@ -76,7 +76,7 @@
               = image_tag 'default.webp', class: "rounded-circle", width: 40, height: 40, alt: 'Default profile picture'
         .flex-grow-1.postContent
           .d-flex.align-items-center
-            h5.card-title.mb-0
+            p.card-title.mb-0
               strong 
                 = link_to user_path(comment.user), data: { turbo: false } do
                   - if comment.user.name.present?
@@ -88,10 +88,10 @@
                 = comment.user.user_name
                 |  ・ 
                 = time_ago_in_words(comment.created_at)+ "前"
-          p.text-muted
+          p.text-muted.comment-name
             | 返信先：
-            = link_to user_path(comment.user), data: { turbo: false } do
-              | #{current_user.user_name} さん
+            = link_to user_path(current_user), data: { turbo: false } do
+              | @#{current_user.user_name} さん
           p.card-text.mt-2
             = link_to post_path(comment.post), data: { turbo: false} do
               - if comment.content?
