@@ -15,6 +15,7 @@ class Comment < ApplicationRecord
   private
 
   def create_notifications
-    Notification.create(subject: self, user: self.post.user, subject_type: 'Comment')
+    notification = Notification.create!(subject: self, user: self.post.user, subject_type: 'Comment')
+    NotificationMailer.comment_notification(notification:).deliver_later
   end
 end

@@ -11,6 +11,7 @@ class Repost < ApplicationRecord
   private
 
   def create_notifications
-    Notification.create(subject: self, user: self.post.user, subject_type: 'Repost')
+    notification = Notification.create!(subject: self, user: self.post.user, subject_type: 'Repost')
+    NotificationMailer.repost_notification(notification:).deliver_later
   end
 end
