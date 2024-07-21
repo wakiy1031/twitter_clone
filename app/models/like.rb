@@ -11,7 +11,7 @@ class Like < ApplicationRecord
   private
 
   def create_notifications
-    notification = Notification.create!(subject: self, user: self.post.user, subject_type: 'Like')
+    notification = Notification.create!(subject: self, user: post.user, subject_type: 'Like')
     NotificationMailer.like_notification(notification:).deliver_later
   end
 end
