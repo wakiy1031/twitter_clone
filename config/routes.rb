@@ -26,5 +26,7 @@ Rails.application.routes.draw do
     resources :messages, only: %i[create]
   end
 
+  resources :notifications, only: %i[index]
+
   root 'posts#index'
 end

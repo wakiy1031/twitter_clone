@@ -1,0 +1,104 @@
+.card.notificationCard
+  - case notification.subject_type
+  - when 'Like'
+    - like = notification.subject
+    .card-body.notificationLike
+      .d-flex.align-items-start
+        p.icon.me-2
+          i.bi.bi-heart-fill.mt-2
+        .flex-grow-1.postContent
+          .postUserImg.me-2
+             = link_to user_path(like.user), data: { turbo: false } do
+               - if like.user.avatar_image.attached?
+                 = image_tag like.user.avatar_image, class: "rounded-circle", width: 40, height: 40, alt: 'Profile picture'
+               - else
+                 = image_tag 'default.webp', class: "rounded-circle", width: 40, height: 40, alt: 'Default profile picture'
+
+          p.card-title.mt-2
+            strong 
+              = link_to user_path(like.user), data: { turbo: false } do
+                - if like.user.name.present?
+                  = like.user.name
+                - else 
+                  = like.user.user_name
+            |  があなたの投稿をいいねしました
+              
+          p.card-text.mt-2.text-muted
+            = link_to post_path(like.post), data: { turbo: false} do
+              - if like.post.content?
+              span
+                = safe_join(like.post.content.split("\n"), tag(:br))
+              - if like.post.images.attached?
+                .d-flex.flex-wrap.postContentImg
+                  - like.post.images.each do |image|
+                    = image_tag image, multiple: true, class: "img-fluid"
+  - when 'Repost'
+    - repost = notification.subject
+    .card-body.notificationRepost
+      .d-flex.align-items-start
+        p.icon.me-2
+          i.bi.bi-repeat.mt-2
+        .flex-grow-1.postContent
+          .postUserImg.me-2
+             = link_to user_path(repost.user), data: { turbo: false } do
+               - if repost.user.avatar_image.attached?
+                 = image_tag repost.user.avatar_image, class: "rounded-circle", width: 40, height: 40, alt: 'Profile picture'
+               - else
+                 = image_tag 'default.webp', class: "rounded-circle", width: 40, height: 40, alt: 'Default profile picture'
+
+          p.card-title.mt-2
+            strong 
+              = link_to user_path(repost.user), data: { turbo: false } do
+                - if repost.user.name.present?
+                  = repost.user.name
+                - else 
+                  = repost.user.user_name
+            |  があなたの投稿をリツイートしました
+              
+          p.card-text.mt-2.text-muted
+            = link_to post_path(repost.post), data: { turbo: false} do
+              - if repost.post.content?
+              span
+                = safe_join(repost.post.content.split("\n"), tag(:br))
+              - if repost.post.images.attached?
+                .d-flex.flex-wrap.postContentImg
+                  - repost.post.images.each do |image|
+                    = image_tag image, multiple: true, class: "img-fluid"
+  - when 'Comment'
+    - comment = notification.subject
+    .card-body
+      .d-flex.align-items-start
+        .postUserImg.me-2
+          = link_to user_path(comment.user), data: { turbo: false } do
+            - if comment.user.avatar_image.attached?
+              = image_tag comment.user.avatar_image, class: "rounded-circle", width: 40, height: 40, alt: 'Profile picture'
+            - else
+              = image_tag 'default.webp', class: "rounded-circle", width: 40, height: 40, alt: 'Default profile picture'
+        .flex-grow-1.postContent
+          .d-flex.align-items-center
+            p.card-title.mb-0
+              strong 
+                = link_to user_path(comment.user), data: { turbo: false } do
+                  - if comment.user.name.present?
+                    = comment.user.name
+                  - else 
+                    = comment.user.user_name
+            small.text-muted.ms-2
+                | @
+                = comment.user.user_name
+                |  ・ 
+                = time_ago_in_words(comment.created_at)+ "前"
+          p.text-muted.comment-name
+            | 返信先：
+            = link_to user_path(current_user), data: { turbo: false } do
+              | @#{current_user.user_name} さん
+          p.card-text.mt-2
+            = link_to post_path(comment.post), data: { turbo: false} do
+              - if comment.content?
+              span
+                = safe_join(comment.content.split("\n"), tag(:br))
+              - if comment.images.attached?
+                .d-flex.flex-wrap.postContentImg
+                  - comment.images.each do |image|
+                    = image_tag image, multiple: true, class: "img-fluid"
+            
