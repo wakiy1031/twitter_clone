@@ -1,21 +1,21 @@
 # frozen_string_literal: true
 
 class NotificationMailer < ApplicationMailer
-  def like_notification(notification:)
+  def notification_email(notification:)
     @notification = notification
-    @like = notification.subject
-    mail(to: @notification.user.email, subject: 'あなたの投稿がいいねされました')
-  end
+    @subject = notification.subject
 
-  def repost_notification(notification:)
-    @notification = notification
-    @repost = notification.subject
-    mail(to: @notification.user.email, subject: 'あなたの投稿がリポストされました')
-  end
+    subject = case @notification.subject_type
+              when 'Like'
+                'あなたの投稿がいいねされました'
+              when 'Repost'
+                'あなたの投稿がリポストされました'
+              when 'Comment'
+                'あなたの投稿にコメントがつきました'
+              else
+                '新しい通知があります'
+              end
 
-  def comment_notification(notification:)
-    @notification = notification
-    @comment = notification.subject
-    mail(to: @notification.user.email, subject: 'あなたの投稿にコメントがつきました')
+    mail(to: @notification.user.email, subject: subject)
   end
 end

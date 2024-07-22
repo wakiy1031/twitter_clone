@@ -1,8 +1,0 @@
-h1 新しいいいねがあります
-p
-  | #{@like.user.name} さんがあなたの投稿にいいねしました。
-p 投稿内容:
-blockquote
-  = @like.post.content
-p
-  = link_to "投稿を見る", post_url(@like.post)

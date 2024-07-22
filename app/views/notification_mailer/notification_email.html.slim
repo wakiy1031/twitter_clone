@@ -1,0 +1,38 @@
+- case @notification.subject_type
+- when 'Comment'
+  h1 新しいコメントがあります
+  p
+    | #{@subject.user.name} さんがあなたの投稿にコメントしました。
+  p コメント内容:
+  blockquote
+    = @subject.content
+  p 元の投稿:
+  blockquote
+    = @subject.post.content
+  p
+    = link_to "投稿とコメントを見る", post_url(@subject.post)
+
+- when 'Like'
+  h1 新しいいいねがあります
+  p
+    | #{@subject.user.name} さんがあなたの投稿にいいねしました。
+  p 投稿内容:
+  blockquote
+    = @subject.post.content
+  p
+    = link_to "投稿を見る", post_url(@subject.post)
+
+- when 'Repost'
+  h1 あなたの投稿がリツイートされました
+  p
+    | #{@subject.user.name} さんがあなたの投稿をリツイートしました。
+  p リツイートされた投稿:
+  blockquote
+    = @subject.post.content
+  p
+    = link_to "投稿を見る", post_url(@subject.post)
+
+- else
+  h1 新しい通知があります
+  p
+    | 詳細については、Twiiterクローンサイトにて確認してください

@@ -1,8 +1,0 @@
-h1 あなたの投稿がリツイートされました
-p
-  | #{@repost.user.name} さんがあなたの投稿をリツイートしました。
-p リツイートされた投稿:
-blockquote
-  = @repost.post.content
-p
-  = link_to "投稿を見る", post_url(@repost.post)
