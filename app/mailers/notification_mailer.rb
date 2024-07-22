@@ -16,6 +16,6 @@ class NotificationMailer < ApplicationMailer
                 '新しい通知があります'
               end
 
-    mail(to: @notification.user.email, subject: subject)
+    mail(to: @notification.user.email, subject:)
   end
 end
