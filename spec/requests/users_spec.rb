@@ -41,7 +41,7 @@ RSpec.describe 'Users', type: :request do
     context 'パラメータが不正な場合' do
       let(:invalid_params) { { user: attributes_for(:user, email: '') } }
 
-      it 'リクエストが成功すること' do
+      it 'リクエストが失敗すること' do
         post user_registration_path, params: invalid_params
         expect(response).to have_http_status(:unprocessable_entity)
       end
@@ -51,6 +51,53 @@ RSpec.describe 'Users', type: :request do
           post user_registration_path, params: invalid_params
         }.not_to change(User, :count)
       end
+    end
+  end
+
+  describe 'ログイン' do
+    let(:user) { create(:user) }
+
+    context 'パラメータが正常な場合' do
+      let(:valid_params) { { user: { email: user.email, password: user.password } } }
+
+      before do
+        user.confirm
+      end
+
+      it 'リクエストが成功すること' do
+        post user_session_path, params: valid_params
+        expect(response).to have_http_status(:see_other)
+      end
+
+      it 'ログインが成功すること' do
+        post user_session_path, params: valid_params
+        expect(controller.user_signed_in?).to be true
+      end
+
+      it '投稿一覧ページにリダイレクトされること' do
+        post user_session_path, params: valid_params
+        expect(response).to redirect_to(root_path)
+      end
+
+    end
+
+    context 'パラメータが不正な場合' do
+      let(:invalid_params) { { user: { email: user.email, password: 'wrong_password' } } }
+
+      before do
+        user.confirm
+      end
+
+      it 'リクエストが成功すること' do
+        post user_registration_path, params: invalid_params
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+
+      it 'ログインが失敗すること' do
+        post user_session_path, params: invalid_params
+        expect(controller.user_signed_in?).to be false
+      end
+
     end
   end
 end
