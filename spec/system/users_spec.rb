@@ -48,4 +48,34 @@ RSpec.describe "Users", type: :system do
       end
     end
   end
+
+  describe 'ログイン' do
+    let(:user) { create(:user) }
+
+    before do
+      user.confirm
+    end
+
+    context 'パラメータが正常な場合' do
+      scenario 'ログイン' do
+        visit new_user_session_path
+        fill_in 'メール', with: user.email
+        fill_in 'パスワード', with: user.password
+        click_button 'ログインする'
+
+        expect(page).to have_content 'ログインしました。'
+      end
+    end
+
+    context 'パラメータが不正な場合' do
+      scenario 'パスワード入力なしでログイン' do
+        visit new_user_session_path
+        fill_in 'メール', with: user.email
+        fill_in 'パスワード', with: ''
+        click_button 'ログインする'
+
+        expect(page).to have_content 'メールまたはパスワードが違います。'
+      end
+    end
+  end
 end
