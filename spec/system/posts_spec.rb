@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "Posts", type: :system do
+RSpec.describe 'Posts', type: :system do
   before do
     driven_by(:rack_test)
   end
@@ -13,7 +15,8 @@ RSpec.describe "Posts", type: :system do
         user.confirm
         sign_in user
       end
-      scenario '投稿' do
+
+      it '投稿' do
         content = 'テスト投稿'
 
         expect do
@@ -31,7 +34,8 @@ RSpec.describe "Posts", type: :system do
         user.confirm
         sign_in user
       end
-      scenario '投稿内容なしの投稿' do
+
+      it '投稿内容なしの投稿' do
         expect do
           visit root_path
           fill_in 'post[content]', with: ''

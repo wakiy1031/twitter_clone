@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "Users", type: :system do
+RSpec.describe 'Users', type: :system do
   before do
     driven_by(:rack_test)
   end
@@ -9,7 +11,7 @@ RSpec.describe "Users", type: :system do
     context 'パラメータが正常な場合' do
       let(:user) { build(:user) }
 
-      scenario 'アカウントを作成' do
+      it 'アカウントを作成' do
         expect do
           visit new_user_registration_path
           fill_in 'ユーザー名', with: user.user_name
@@ -30,7 +32,7 @@ RSpec.describe "Users", type: :system do
     context 'パラメータが不正な場合' do
       let(:user) { build(:user) }
 
-      scenario 'メールアドレスが未入力の場合' do
+      it 'メールアドレスが未入力の場合' do
         expect do
           visit new_user_registration_path
           fill_in 'ユーザー名', with: user.user_name
@@ -57,7 +59,7 @@ RSpec.describe "Users", type: :system do
     end
 
     context 'パラメータが正常な場合' do
-      scenario 'ログイン' do
+      it 'ログイン' do
         visit new_user_session_path
         fill_in 'メール', with: user.email
         fill_in 'パスワード', with: user.password
@@ -68,7 +70,7 @@ RSpec.describe "Users", type: :system do
     end
 
     context 'パラメータが不正な場合' do
-      scenario 'パスワード入力なしでログイン' do
+      it 'パスワード入力なしでログイン' do
         visit new_user_session_path
         fill_in 'メール', with: user.email
         fill_in 'パスワード', with: ''

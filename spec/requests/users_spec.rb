@@ -15,15 +15,15 @@ RSpec.describe 'Users', type: :request do
       end
 
       it 'ユーザーが作成されること' do
-        expect {
+        expect do
           post user_registration_path, params: valid_params
-        }.to change(User, :count).by(1)
+        end.to change(User, :count).by(1)
       end
 
       it '認証メールが送信されること' do
-        expect {
+        expect do
           post user_registration_path, params: valid_params
-        }.to change { ActionMailer::Base.deliveries.count }.by(1)
+        end.to change { ActionMailer::Base.deliveries.count }.by(1)
       end
 
       it '登録のメッセージが設定されること' do
@@ -35,7 +35,6 @@ RSpec.describe 'Users', type: :request do
         post user_registration_path, params: valid_params
         expect(response).to redirect_to(root_path)
       end
-
     end
 
     context 'パラメータが不正な場合' do
@@ -47,9 +46,9 @@ RSpec.describe 'Users', type: :request do
       end
 
       it 'ユーザーが作成されないこと' do
-        expect {
+        expect do
           post user_registration_path, params: invalid_params
-        }.not_to change(User, :count)
+        end.not_to change(User, :count)
       end
     end
   end
@@ -78,7 +77,6 @@ RSpec.describe 'Users', type: :request do
         post user_session_path, params: valid_params
         expect(response).to redirect_to(root_path)
       end
-
     end
 
     context 'パラメータが不正な場合' do
@@ -97,7 +95,6 @@ RSpec.describe 'Users', type: :request do
         post user_session_path, params: invalid_params
         expect(controller.user_signed_in?).to be false
       end
-
     end
   end
 end
